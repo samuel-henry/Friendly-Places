@@ -32,6 +32,7 @@ NSManagedObjectContext* context;
 }
 
 #pragma mark -- Core Data methods
+//TODO: move to own class
 
 //Methods for adding Friends
 - (void)addFriends:(NSMutableArray *)friends {
@@ -50,21 +51,6 @@ NSManagedObjectContext* context;
 
 }
 
-//Methods for adding Checkins
-- (void)addCheckins:(NSMutableArray *)checkins {
-    NSLog(@"adding checkins");
-    for (FBGraphObject *checkin in checkins) {
-        [self addCheckin:checkin];
-    }
-}
-
-- (void)addCheckin:(FBGraphObject *)checkin
-{
-    NSManagedObject *newCheckin = [NSEntityDescription
-                                    insertNewObjectForEntityForName:@"Checkin"
-                                    inManagedObjectContext:context];
-}
-
 //Methods for adding Locations
 - (void)addLocations:(NSMutableArray *)locations {
     NSLog(@"adding locations");
@@ -78,6 +64,58 @@ NSManagedObjectContext* context;
     NSManagedObject *newLocation = [NSEntityDescription
                                     insertNewObjectForEntityForName:@"Location"
                                     inManagedObjectContext:context];
+    
+    
+     //NSString * city;
+     //NSString * country;
+     //NSString * fb_about;
+     //id fb_categories;
+     //NSNumber * fb_checkins;
+    //[newLocation setValue:[NSNumber numberWithInt:[[location objectForKey:@"fb_checkins"] intValue]] forKey:@"checkins"];
+     //NSString * fb_description;
+     //NSNumber * fb_fan_count;
+    //[newLocation setValue:[NSNumber numberWithInt:[[location objectForKey:@"fb_fan_count"] intValue]] forKey:@"fan_count"];
+     //NSNumber * fb_is_published;
+     //NSNumber * fb_page_id;
+     //NSString * fb_pic_square;
+     //NSNumber * fb_were_here_count;
+     //id hours;
+     //NSNumber * id;
+     //NSNumber * latitude;
+     //NSNumber * longitude;
+     //NSString * name;
+     //NSString * phone;
+     //NSString * state;
+     //NSString * street;
+     //NSString * website;
+     //NSString * zip;
+     //NSSet *checkers;
+    
+    
+}
+
+//Methods for adding Checkins
+- (void)addCheckins:(NSMutableArray *)checkins {
+    NSLog(@"adding checkins");
+    for (FBGraphObject *checkin in checkins) {
+        [self addCheckin:checkin];
+    }
+}
+
+- (void)addCheckin:(FBGraphObject *)checkin
+{
+    NSManagedObject *newCheckin = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"Checkin"
+                                    inManagedObjectContext:context];
+    /*
+     NSNumber * fb_checkin_id;
+     NSNumber * id;
+     NSDate * timestamp;
+     NSManagedObject *checkin_location;
+     */
+    
+    //[newCheckin setValue:[NSNumber numberWithInt:[[checkin objectForKey:@"fb_checkin_id"] intValue]] forKey:@"checkin_id"];
+    //[newCheckin setValue:[checkin objectForKey:@"timestamp"] forKey:@"timestamp"];
 }
 
 #pragma mark -- Facebook methods
