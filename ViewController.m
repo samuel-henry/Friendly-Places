@@ -14,20 +14,15 @@
 @end
 
 @implementation ViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+AppDelegate* appDelegate;
+NSManagedObjectContext* context;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    appDelegate = [AppDelegate sharedAppDelegate];
+    context = appDelegate.managedObjectContext;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,11 +31,63 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -- Core Data methods
+
+//Methods for adding Friends
+- (void)addFriends:(NSMutableArray *)friends {
+    NSLog(@"adding friends");
+    for (FBGraphObject *friend in friends) {
+        [self addFriend:friend];
+    }
+}
+
+- (void)addFriend:(FBGraphObject *)friend
+{
+    NSManagedObject *newFriend = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"Friend"
+                                    inManagedObjectContext:context];
+    [newFriend setValue:[NSNumber numberWithInt:[[friend objectForKey:@"uid2"] intValue]] forKey:@"fb_id"];
+
+}
+
+//Methods for adding Checkins
+- (void)addCheckins:(NSMutableArray *)checkins {
+    NSLog(@"adding checkins");
+    for (FBGraphObject *checkin in checkins) {
+        [self addCheckin:checkin];
+    }
+}
+
+- (void)addCheckin:(FBGraphObject *)checkin
+{
+    NSManagedObject *newCheckin = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"Checkin"
+                                    inManagedObjectContext:context];
+}
+
+//Methods for adding Locations
+- (void)addLocations:(NSMutableArray *)locations {
+    NSLog(@"adding locations");
+    for (FBGraphObject *location in locations) {
+        [self addLocation:location];
+    }
+}
+
+- (void)addLocation:(FBGraphObject *)location
+{
+    NSManagedObject *newLocation = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"Location"
+                                    inManagedObjectContext:context];
+}
+
+#pragma mark -- Facebook methods
+
 - (IBAction)getDataClicked:(UIButton *)sender {
     [self loadFBData];
 }
 - (IBAction)loginClicked:(UIButton *)sender {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
     // The user has initiated a login, so call the openSession method
     // and show the login UX if necessary.
     [appDelegate openSessionWithAllowLoginUI:YES];
@@ -77,7 +124,25 @@
                               if (error) {
                                   NSLog(@"Error: %@", [error localizedDescription]);
                               } else {
-                                  NSLog(@"Result: %@", result);
+                                  //NSLog(@"Result: %@", result);
+                                  //get friends TODO:don't use index
+                                  NSMutableArray *friends = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:0] objectForKey:@"fql_result_set"]];
+                                  
+                                  //add new friends to context
+                                  [self addFriends:friends];
+                                  
+                                  //get checkins TODO: don't use index
+                                  NSMutableArray *checkins = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:1] objectForKey:@"fql_result_set"]];
+                                  
+                                  //add new checkins to context
+                                  [self addCheckins:friends];
+                                  
+                                  //get locations TODO: don't use index
+                                  NSMutableArray *locations = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:2] objectForKey:@"fql_result_set"]];
+                                  
+                                  //add new locations to context
+                                  [self addLocations:locations];
+                                
                               }
                           }];
     

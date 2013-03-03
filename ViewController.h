@@ -11,6 +11,8 @@
 @interface ViewController : UIViewController
 - (IBAction)loginClicked:(UIButton *)sender;
 - (IBAction)getDataClicked:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 
 @end

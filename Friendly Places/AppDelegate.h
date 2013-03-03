@@ -13,16 +13,18 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+#pragma mark -- Core Data
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
-
-extern NSString *const FBSessionStateChangedNotification;
-
++ (AppDelegate *)sharedAppDelegate;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+
+# pragma mark -- FB 
+- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
+
+extern NSString *const FBSessionStateChangedNotification;
 @end

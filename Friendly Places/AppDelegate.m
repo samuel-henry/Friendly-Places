@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "Location.h"
+#import "Friend.h"
+#import "Checkin.h"
 
 @implementation AppDelegate
 
@@ -19,7 +22,7 @@ NSString *const FBSessionStateChangedNotification =
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    //[self create];
     return YES;
 }
 
@@ -49,7 +52,7 @@ NSString *const FBSessionStateChangedNotification =
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    //[self saveContext];
     [FBSession.activeSession close];
 }
 
@@ -65,6 +68,11 @@ NSString *const FBSessionStateChangedNotification =
             abort();
         } 
     }
+}
+
++ (AppDelegate *)sharedAppDelegate
+{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 #pragma mark - Facebook methods
