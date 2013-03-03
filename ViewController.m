@@ -135,7 +135,7 @@ NSManagedObjectContext* context;
                                   NSMutableArray *checkins = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:1] objectForKey:@"fql_result_set"]];
                                   
                                   //add new checkins to context
-                                  [self addCheckins:friends];
+                                  [self addCheckins:checkins];
                                   
                                   //get locations TODO: don't use index
                                   NSMutableArray *locations = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:2] objectForKey:@"fql_result_set"]];
