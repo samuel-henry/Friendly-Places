@@ -68,67 +68,69 @@ NSManagedObjectContext* context;
 
     Location *newLocationInstance = (Location *)newLocation;
     
-     //NSNumber * city;
-     //NSNumber * country;
+    //TODO: change model
+    //NSNumber * city;
+    //NSNumber * country;
+    //NSNumber * id;
+    //NSSet *checkers;
     
-    
-     //NSString * fb_about;
+    //NSString * fb_about;
     newLocationInstance.fb_about = [location objectForKey:@"about"];
     //NSLog(newLocationInstance.fb_about);
     
-     //id fb_categories;
-     //NSNumber * fb_checkins;
+    //id fb_categories;
+    newLocationInstance.fb_categories = [location objectForKey:@"categories"];
+    
+    //NSNumber * fb_checkins;
     newLocationInstance.fb_checkins = [NSNumber numberWithInt:[[location objectForKey:@"checkins"] intValue]];
     
-     //NSString * fb_description;
+    //NSString * fb_description;
     newLocationInstance.fb_description = [location objectForKey:@"description"];
     //NSLog(newLocationInstance.fb_description);
     
-     //NSNumber * fb_fan_count;
+    //NSNumber * fb_fan_count;
     newLocationInstance.fb_fan_count = [NSNumber numberWithInt:[[location objectForKey:@"fan_count"] intValue]];
     
-     //NSNumber * fb_is_published;
+    //NSNumber * fb_is_published;
     newLocationInstance.fb_is_published = [NSNumber numberWithInt:[[location objectForKey:@"is_published"] intValue]];
     
-     //NSNumber * fb_page_id;
+    //NSNumber * fb_page_id;
     newLocationInstance.fb_page_id = [NSNumber numberWithInt:[[location objectForKey:@"page_id"] intValue]];
     
-     //NSString * fb_pic_square;
+    //NSString * fb_pic_square;
     newLocationInstance.fb_pic_square = [location objectForKey:@"pic_square"];
     //NSLog(newLocationInstance.fb_pic_square);
     
-     //NSNumber * fb_were_here_count;
+    //NSNumber * fb_were_here_count;
     newLocationInstance.fb_were_here_count = [NSNumber numberWithInt:[[location objectForKey:@"were_here_count"] intValue]];
     
-     //id hours;
-     //NSNumber * id;
+    //id hours;
+    newLocationInstance.hours = [location objectForKey:@"hours"];
     
-     //NSNumber * latitude;
+    //NSNumber * latitude;
     newLocationInstance.latitude = [NSNumber numberWithFloat:[[[location objectForKey:@"location"] objectForKey:@"latitude"] floatValue]];
-    //newLocationInstance.latitude = [[location objectForKey:@"location"] objectForKey:@"latitude"];
-     //NSNumber * longitude;
-    //newLocationInstance.longitude = [NSNumber numberWithFloat:[[location objectForKey:@"location"] objectForKey:@"longitude" floatValue]];
-     //NSString * name;
+    
+    //NSNumber * longitude;
+    newLocationInstance.longitude = [NSNumber numberWithFloat:[[[location objectForKey:@"location"] objectForKey:@"longitude"] floatValue]];
+    
+    //NSString * name;
     newLocationInstance.name = [location objectForKey:@"name"];
     //NSLog(newLocationInstance.name);
     
     //NSString * phone;
     newLocationInstance.phone = [location objectForKey:@"phone"];
     
-     //NSString * state;
+    //NSString * state;
     newLocationInstance.state = [[location objectForKey:@"location"] objectForKey:@"state"];
     
-     //NSString * street;
+    //NSString * street;
     newLocationInstance.street = [[location objectForKey:@"location"] objectForKey:@"street"];
     
-     //NSString * website;
+    //NSString * website;
     newLocationInstance.website = [location objectForKey:@"website"];
     
-     //NSString * zip;
+    //NSString * zip;
     newLocationInstance.zip = [[location objectForKey:@"location"] objectForKey:@"zip"];
-    
-     //NSSet *checkers;
-        1+1;
 }
 
 //Methods for adding Checkins
