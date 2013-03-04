@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "Location.h"
 
 @interface ViewController ()
 
@@ -64,34 +65,70 @@ NSManagedObjectContext* context;
     NSManagedObject *newLocation = [NSEntityDescription
                                     insertNewObjectForEntityForName:@"Location"
                                     inManagedObjectContext:context];
+
+    Location *newLocationInstance = (Location *)newLocation;
+    
+     //NSNumber * city;
+     //NSNumber * country;
     
     
-     //NSString * city;
-     //NSString * country;
      //NSString * fb_about;
+    newLocationInstance.fb_about = [location objectForKey:@"about"];
+    //NSLog(newLocationInstance.fb_about);
+    
      //id fb_categories;
      //NSNumber * fb_checkins;
-    //[newLocation setValue:[NSNumber numberWithInt:[[location objectForKey:@"fb_checkins"] intValue]] forKey:@"checkins"];
+    newLocationInstance.fb_checkins = [NSNumber numberWithInt:[[location objectForKey:@"checkins"] intValue]];
+    
      //NSString * fb_description;
+    newLocationInstance.fb_description = [location objectForKey:@"description"];
+    //NSLog(newLocationInstance.fb_description);
+    
      //NSNumber * fb_fan_count;
-    //[newLocation setValue:[NSNumber numberWithInt:[[location objectForKey:@"fb_fan_count"] intValue]] forKey:@"fan_count"];
+    newLocationInstance.fb_fan_count = [NSNumber numberWithInt:[[location objectForKey:@"fan_count"] intValue]];
+    
      //NSNumber * fb_is_published;
+    newLocationInstance.fb_is_published = [NSNumber numberWithInt:[[location objectForKey:@"is_published"] intValue]];
+    
      //NSNumber * fb_page_id;
+    newLocationInstance.fb_page_id = [NSNumber numberWithInt:[[location objectForKey:@"page_id"] intValue]];
+    
      //NSString * fb_pic_square;
+    newLocationInstance.fb_pic_square = [location objectForKey:@"pic_square"];
+    //NSLog(newLocationInstance.fb_pic_square);
+    
      //NSNumber * fb_were_here_count;
+    newLocationInstance.fb_were_here_count = [NSNumber numberWithInt:[[location objectForKey:@"were_here_count"] intValue]];
+    
      //id hours;
      //NSNumber * id;
+    
      //NSNumber * latitude;
+    newLocationInstance.latitude = [NSNumber numberWithFloat:[[[location objectForKey:@"location"] objectForKey:@"latitude"] floatValue]];
+    //newLocationInstance.latitude = [[location objectForKey:@"location"] objectForKey:@"latitude"];
      //NSNumber * longitude;
+    //newLocationInstance.longitude = [NSNumber numberWithFloat:[[location objectForKey:@"location"] objectForKey:@"longitude" floatValue]];
      //NSString * name;
-     //NSString * phone;
+    newLocationInstance.name = [location objectForKey:@"name"];
+    //NSLog(newLocationInstance.name);
+    
+    //NSString * phone;
+    newLocationInstance.phone = [location objectForKey:@"phone"];
+    
      //NSString * state;
+    newLocationInstance.state = [[location objectForKey:@"location"] objectForKey:@"state"];
+    
      //NSString * street;
+    newLocationInstance.street = [[location objectForKey:@"location"] objectForKey:@"street"];
+    
      //NSString * website;
+    newLocationInstance.website = [location objectForKey:@"website"];
+    
      //NSString * zip;
+    newLocationInstance.zip = [[location objectForKey:@"location"] objectForKey:@"zip"];
+    
      //NSSet *checkers;
-    
-    
+        1+1;
 }
 
 //Methods for adding Checkins
@@ -146,7 +183,7 @@ NSManagedObjectContext* context;
     @"{"
     @"'queryfriends':'SELECT uid2 FROM friend WHERE uid1 = me()',"
     @"'queryfriendcheckins':'SELECT author_uid, checkin_id, page_id, timestamp from checkin WHERE author_uid IN (select uid2 from #queryfriends)',"
-    @"'querylocationinfo':'SELECT page_id, location, is_published, fan_count, hours, phone, pic_square, website, were_here_count, about, categories, description FROM page WHERE page_id IN (select page_id from #queryfriendcheckins)',"
+    @"'querylocationinfo':'SELECT name, page_id, location, is_published, fan_count, hours, phone, pic_square, website, were_here_count, about, categories, description FROM page WHERE page_id IN (select page_id from #queryfriendcheckins)',"
     @"}";
     
     // Set up the query parameter
