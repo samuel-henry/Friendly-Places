@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "Location.h"
+#import "Checkin.h"
 
 @interface ViewController ()
 
@@ -146,15 +147,21 @@ NSManagedObjectContext* context;
     NSManagedObject *newCheckin = [NSEntityDescription
                                     insertNewObjectForEntityForName:@"Checkin"
                                     inManagedObjectContext:context];
-    /*
-     NSNumber * fb_checkin_id;
-     NSNumber * id;
-     NSDate * timestamp;
-     NSManagedObject *checkin_location;
-     */
+    Checkin *newCheckinInstance = (Checkin *)newCheckin;
     
-    //[newCheckin setValue:[NSNumber numberWithInt:[[checkin objectForKey:@"fb_checkin_id"] intValue]] forKey:@"checkin_id"];
-    //[newCheckin setValue:[checkin objectForKey:@"timestamp"] forKey:@"timestamp"];
+    //TODO: change model
+    //NSNumber * id;
+    
+    //NSNumber * fb_checkin_id;
+    newCheckinInstance.fb_checkin_id = [NSNumber numberWithInt:[[checkin objectForKey:@"checkin_id"] intValue]];
+    
+    //NSDate * timestamp;
+    newCheckinInstance.timestamp = [NSDate dateWithTimeIntervalSince1970:
+                                    [[checkin objectForKey:@"timestamp"] doubleValue]];
+    
+    
+    //NSManagedObject *checkin_location;
+    
 }
 
 #pragma mark -- Facebook methods
