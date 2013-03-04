@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Checkin" syncable="YES">
+    <entity name="Checkin" representedClassName="Checkin" syncable="YES">
         <attribute name="fb_checkin_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="checkin_location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" syncable="YES"/>
     </entity>
-    <entity name="Friend" syncable="YES">
-        <attribute name="fb_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    <entity name="Friend" representedClassName="Friend" syncable="YES">
+        <attribute name="fb_id" optional="YES" attributeType="Integer 32" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="checked_in" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checkin" syncable="YES"/>
     </entity>
-    <entity name="Location" syncable="YES">
+    <entity name="Location" representedClassName="Location" syncable="YES">
         <attribute name="city" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="fb_about" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,8 +36,8 @@
         <relationship name="checkers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Location" positionX="-254" positionY="27" width="128" height="373"/>
-        <element name="Friend" positionX="-90" positionY="-54" width="128" height="88"/>
         <element name="Checkin" positionX="-11" positionY="81" width="128" height="103"/>
+        <element name="Friend" positionX="-90" positionY="-54" width="128" height="88"/>
+        <element name="Location" positionX="-254" positionY="27" width="128" height="373"/>
     </elements>
 </model>
