@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 #import "Location.h"
 #import "Checkin.h"
+#import "FriendlyLocation.h"
+#import <MapKit/MapKit.h>
+#import "LocationTableViewController.h"
 
 @interface ViewController ()
 
@@ -18,6 +21,7 @@
 @implementation ViewController
 AppDelegate* appDelegate;
 NSManagedObjectContext* context;
+NSArray* locations;
 
 - (void)viewDidLoad
 {
@@ -25,8 +29,47 @@ NSManagedObjectContext* context;
     // Do any additional setup after loading the view from its nib.
     appDelegate = [AppDelegate sharedAppDelegate];
     context = appDelegate.managedObjectContext;
+    
+    [self fetchLocations];
+    
+    //LocationTableViewController *tvc = [[LocationTableViewController alloc] init];
+    
+    //self.tableView = tvc.tableView;
+    
+    //[self.tableView reloadData];
+    self.tableView = [[UITableView alloc] init];
+    
+   
+    
+    //self.tableView.dataSource = [self.mapView annotationsInMapRect:self.mapView.visibleMapRect];
+    
+    [self.view addSubview:self.tableView];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [locations count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] init];
+    }
+    
+    // Configure the cell...
+    Location *currLocation = [locations objectAtIndex:indexPath.row];
+    cell.textLabel.text = currLocation.name;
+    return cell;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -74,6 +117,7 @@ NSManagedObjectContext* context;
     //NSNumber * country;
     //NSNumber * id;
     //NSSet *checkers;
+    //populate using predicate off friends and checkins
     
     //NSString * fb_about;
     newLocationInstance.fb_about = [location objectForKey:@"about"];
@@ -132,6 +176,46 @@ NSManagedObjectContext* context;
     
     //NSString * zip;
     newLocationInstance.zip = [[location objectForKey:@"location"] objectForKey:@"zip"];
+    
+    //[self addToMap newLocationInstance];
+}
+
+- (void)fetchLocations {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Location"];
+    
+    NSError *error;
+    
+    locations = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if (locations == nil) {
+        NSLog(@"error fetching locations");
+    } else {
+        NSLog(@"fetched locations");
+    }
+    
+    for (int i=0; i<locations.count; i++) {
+        [self addToMap:locations[i]];
+    }
+}
+
+- (void)addToMap:(Location *)someLocation {
+    // Add some new pins
+    CLLocationCoordinate2D coordinates;
+    coordinates.latitude = [someLocation.latitude doubleValue];
+    coordinates.longitude = [someLocation.longitude doubleValue];
+    NSLog(@"adding location to map");
+    
+    NSString *name = someLocation.name;
+
+    //FriendlyLocation *annotation = [[FriendlyLocation alloc] initWithName:name coordinate:coordinates];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:coordinates];
+    [annotation setTitle:name];
+    //TODO: add callout
+    [self.mapView addAnnotation:annotation];
+    
+    
 }
 
 //Methods for adding Checkins
@@ -161,13 +245,14 @@ NSManagedObjectContext* context;
     
     
     //NSManagedObject *checkin_location;
+    //use predicate to fetch off [NSNumber numberWithInt:[[checkin objectForKey:@"page_id"] intValue]];
     
 }
 
 #pragma mark -- Facebook methods
 
 - (IBAction)getDataClicked:(UIButton *)sender {
-    [self loadFBData];
+    //[self loadFBData];
 }
 - (IBAction)loginClicked:(UIButton *)sender {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -208,7 +293,7 @@ NSManagedObjectContext* context;
                               if (error) {
                                   NSLog(@"Error: %@", [error localizedDescription]);
                               } else {
-                                  //NSLog(@"Result: %@", result);
+                                  NSLog(@"Result: %@", result);
                                   //get friends TODO:don't use index
                                   NSMutableArray *friends = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:0] objectForKey:@"fql_result_set"]];
                                   
@@ -226,6 +311,12 @@ NSManagedObjectContext* context;
                                   
                                   //add new locations to context
                                   [self addLocations:locations];
+                                  
+                                  if (![context save:&error]) {
+                                      //handle error
+                                  } else {
+                                      NSLog(@"Saved context");
+                                  }
                                 
                               }
                           }];

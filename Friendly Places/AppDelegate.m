@@ -54,6 +54,7 @@ NSString *const FBSessionStateChangedNotification =
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
     [FBSession.activeSession close];
+    //switch to updatesignificantlocationchanges?
 }
 
 - (void)saveContext
