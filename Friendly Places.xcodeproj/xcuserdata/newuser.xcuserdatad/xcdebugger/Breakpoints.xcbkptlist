@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "92"
-         endingLineNumber = "92"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
          landmarkName = "-addFriend:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "170"
+         endingLineNumber = "170"
          landmarkName = "-addFriends:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "94"
-         endingLineNumber = "94"
+         startingLineNumber = "179"
+         endingLineNumber = "179"
          landmarkName = "-addFriend:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
+         startingLineNumber = "195"
+         endingLineNumber = "195"
          landmarkName = "-addLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
+         startingLineNumber = "261"
+         endingLineNumber = "261"
          landmarkName = "-addLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "121"
-         endingLineNumber = "121"
+         startingLineNumber = "206"
+         endingLineNumber = "206"
          landmarkName = "-addLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
+         startingLineNumber = "239"
+         endingLineNumber = "239"
          landmarkName = "-addLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,25 +99,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385033031.621913"
+         timestampString = "385086041.554196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "191"
-         endingLineNumber = "191"
+         startingLineNumber = "277"
+         endingLineNumber = "277"
          landmarkName = "-fetchLocations"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "ViewController.m"
-         timestampString = "385033031.621913"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "202"
-         endingLineNumber = "202"
-         landmarkName = "-addToMap:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

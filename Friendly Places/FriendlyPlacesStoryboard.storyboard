@@ -12,20 +12,45 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSL-06-Ua2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSL-06-Ua2">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="263" id="LYj-sx-6rs"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" indentationWidth="10" id="URa-w5-8EW">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomLocationCell" rowHeight="80" id="URa-w5-8EW" customClass="CustomLocationCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DED-Gb-Crf">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="121" id="km1-01-V1w"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="Gpd-aG-hmv">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="72" id="5fF-oj-5yi"/>
+                                                        <constraint firstAttribute="width" constant="140" id="KSS-cG-tbd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="Gpd-aG-hmv" firstAttribute="centerY" secondItem="URa-w5-8EW" secondAttribute="centerY" type="default" id="GmQ-K0-3IQ"/>
+                                            <constraint firstItem="DED-Gb-Crf" firstAttribute="leading" secondItem="URa-w5-8EW" secondAttribute="leading" constant="20" type="default" id="S52-Tz-TOZ"/>
+                                            <constraint firstItem="Gpd-aG-hmv" firstAttribute="leading" secondItem="DED-Gb-Crf" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="St3-Tv-6SG"/>
+                                            <constraint firstItem="DED-Gb-Crf" firstAttribute="top" secondItem="URa-w5-8EW" secondAttribute="top" type="default" id="eVm-rc-jco"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -94,7 +119,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="nVs-WL-jNx" id="zFj-dp-Oik"/>
+                        <outlet property="mapView" destination="nVs-WL-jNx" id="zTB-De-jG7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtR-Rv-8gZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -103,6 +128,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="CustomLocationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomLocationCell.h"/>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>

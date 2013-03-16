@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B26D51A916F3DEF100F517FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26D51A816F3DEF100F517FF /* CoreLocation.framework */; };
+		B26D51AC16F3F0A500F517FF /* CustomLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D51AB16F3F0A500F517FF /* CustomLocationCell.m */; };
 		B26F91EE16F2910B00372161 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B26F91ED16F2910B00372161 /* Settings.bundle */; };
 		B26F91F116F2EE6A00372161 /* FriendlyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F91F016F2EE6A00372161 /* FriendlyLocation.m */; };
 		B26F91F716F2FBD300372161 /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F91F616F2FBD300372161 /* LocationTableViewController.m */; };
@@ -52,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B26D51A816F3DEF100F517FF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B26D51AA16F3F0A500F517FF /* CustomLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLocationCell.h; sourceTree = "<group>"; };
+		B26D51AB16F3F0A500F517FF /* CustomLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLocationCell.m; sourceTree = "<group>"; };
 		B26F91ED16F2910B00372161 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B26F91EF16F2EE6A00372161 /* FriendlyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendlyLocation.h; sourceTree = "<group>"; };
 		B26F91F016F2EE6A00372161 /* FriendlyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendlyLocation.m; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26D51A916F3DEF100F517FF /* CoreLocation.framework in Frameworks */,
 				B2B17B0516E97C8800E4F531 /* MapKit.framework in Frameworks */,
 				B2BCEA6216E29BF20050D167 /* Social.framework in Frameworks */,
 				B2BCEA6016E29BE60050D167 /* AdSupport.framework in Frameworks */,
@@ -130,7 +136,6 @@
 		B2BCEA1216E29B780050D167 = {
 			isa = PBXGroup;
 			children = (
-				B2B17B0416E97C8700E4F531 /* MapKit.framework */,
 				B2BCEA2616E29B780050D167 /* Friendly Places */,
 				B2BCEA4816E29B790050D167 /* Friendly PlacesTests */,
 				B2BCEA1D16E29B780050D167 /* Frameworks */,
@@ -150,6 +155,8 @@
 		B2BCEA1D16E29B780050D167 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B26D51A816F3DEF100F517FF /* CoreLocation.framework */,
+				B2B17B0416E97C8700E4F531 /* MapKit.framework */,
 				B2BCEA6116E29BF20050D167 /* Social.framework */,
 				B2BCEA5F16E29BE60050D167 /* AdSupport.framework */,
 				B2BCEA5D16E29BDC0050D167 /* Accounts.framework */,
@@ -169,6 +176,8 @@
 			children = (
 				B2BCEA6616E29EC80050D167 /* ViewController.h */,
 				B2BCEA6716E29EC80050D167 /* ViewController.m */,
+				B26D51AA16F3F0A500F517FF /* CustomLocationCell.h */,
+				B26D51AB16F3F0A500F517FF /* CustomLocationCell.m */,
 				B26F91F516F2FBD300372161 /* LocationTableViewController.h */,
 				B26F91F616F2FBD300372161 /* LocationTableViewController.m */,
 				B26F91EF16F2EE6A00372161 /* FriendlyLocation.h */,
@@ -352,6 +361,7 @@
 				B2BCEA7316E2B5130050D167 /* Location.m in Sources */,
 				B26F91F116F2EE6A00372161 /* FriendlyLocation.m in Sources */,
 				B26F91F716F2FBD300372161 /* LocationTableViewController.m in Sources */,
+				B26D51AC16F3F0A500F517FF /* CustomLocationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

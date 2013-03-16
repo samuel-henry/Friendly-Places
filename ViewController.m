@@ -13,6 +13,7 @@
 #import "FriendlyLocation.h"
 #import <MapKit/MapKit.h>
 #import "LocationTableViewController.h"
+#import "CustomLocationCell.h"
 
 @interface ViewController ()
 
@@ -22,6 +23,7 @@
 AppDelegate* appDelegate;
 NSManagedObjectContext* context;
 NSArray* locations;
+NSMutableArray* visibleAnnotations;
 
 - (void)viewDidLoad
 {
@@ -30,22 +32,76 @@ NSArray* locations;
     appDelegate = [AppDelegate sharedAppDelegate];
     context = appDelegate.managedObjectContext;
     
+    //get locations from DB
     [self fetchLocations];
     
-    //LocationTableViewController *tvc = [[LocationTableViewController alloc] init];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.purpose = @"Friendly Places needs your location to suggest places nearby";
+    self.locationManager.delegate = self;
+    [self.locationManager setDistanceFilter:50]; // meters
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager setHeadingFilter:kCLDistanceFilterNone];
+    [self.locationManager startUpdatingLocation];
     
-    //self.tableView = tvc.tableView;
+    self.mapView.delegate = self;
     
-    //[self.tableView reloadData];
     self.tableView = [[UITableView alloc] init];
+    self.tableView.delegate = self;
     
-   
-    
-    //self.tableView.dataSource = [self.mapView annotationsInMapRect:self.mapView.visibleMapRect];
-    
-    [self.view addSubview:self.tableView];
+    [self updateVisibleAnnotations];
+
 }
 
+# pragma mark - Map View methods
+- (void)updateVisibleAnnotations
+{
+    visibleAnnotations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
+    [self.tableView reloadData];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    //TODO: make lightweight
+    //NSLog(@"regiondidchangeanimated");
+    
+    [self updateVisibleAnnotations];
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = self.mapView.userLocation.coordinate;
+    mapRegion.span.latitudeDelta = 0.1;
+    mapRegion.span.longitudeDelta = 0.1;
+    
+    [self.mapView setRegion:mapRegion animated: NO];
+    
+    [self updateVisibleAnnotations];
+    
+}
+
+//add locations to mapview
+- (void)addToMap:(Location *)someLocation {
+    // Add some new pins
+    CLLocationCoordinate2D coordinates;
+    coordinates.latitude = [someLocation.latitude doubleValue];
+    coordinates.longitude = [someLocation.longitude doubleValue];
+    //NSLog(@"adding location to map");
+    
+    NSString *name = someLocation.name;
+    
+    //FriendlyLocation *annotation = [[FriendlyLocation alloc] initWithName:name coordinate:coordinates];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:coordinates];
+    [annotation setTitle:name];
+    //TODO: add callout
+    [self.mapView addAnnotation:annotation];
+    
+    
+}
+
+#pragma mark - Table View implementation
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -56,24 +112,53 @@ NSArray* locations;
     return [locations count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CustomLocationCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"CustomLocationCell";
+    CustomLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] init];
+        cell = [[CustomLocationCell alloc] init];
     }
     
     // Configure the cell...
-    Location *currLocation = [locations objectAtIndex:indexPath.row];
-    cell.textLabel.text = currLocation.name;
+    FriendlyLocation *currLocation = [visibleAnnotations objectAtIndex:indexPath.row];
+    
+    
+    cell.textLabel.text = [currLocation title];
+    
     return cell;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -- Core Location Manager methods
+#pragma mark - Location Delegate
+/*******************************************************************************
+ * @method locationManager:didUpdateToLocation:fromLocation
+ * @abstract <# Abstract #>
+ * @description <# Description #>
+ ******************************************************************************/
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:
+(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *userLoc = self.mapView.userLocation.location;
+    [self.mapView setCenterCoordinate:userLoc.coordinate animated:YES];
+    
+}
+/*******************************************************************************
+ * @method locationManager:didFailWithError
+ * @abstract <# Abstract #>
+ * @description <# Description #>
+ ******************************************************************************/
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError
+                                                                       *)error
+{
+    NSLog(@"Could not find location: %@", error);
 }
 
 #pragma mark -- Core Data methods
@@ -180,6 +265,7 @@ NSArray* locations;
     //[self addToMap newLocationInstance];
 }
 
+//fetch Core Data Locations
 - (void)fetchLocations {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Location"];
     
@@ -196,26 +282,6 @@ NSArray* locations;
     for (int i=0; i<locations.count; i++) {
         [self addToMap:locations[i]];
     }
-}
-
-- (void)addToMap:(Location *)someLocation {
-    // Add some new pins
-    CLLocationCoordinate2D coordinates;
-    coordinates.latitude = [someLocation.latitude doubleValue];
-    coordinates.longitude = [someLocation.longitude doubleValue];
-    NSLog(@"adding location to map");
-    
-    NSString *name = someLocation.name;
-
-    //FriendlyLocation *annotation = [[FriendlyLocation alloc] initWithName:name coordinate:coordinates];
-    
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:coordinates];
-    [annotation setTitle:name];
-    //TODO: add callout
-    [self.mapView addAnnotation:annotation];
-    
-    
 }
 
 //Methods for adding Checkins
