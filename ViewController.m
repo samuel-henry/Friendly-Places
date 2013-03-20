@@ -14,6 +14,7 @@
 #import <MapKit/MapKit.h>
 #import "LocationTableViewController.h"
 #import "CustomLocationCell.h"
+#import "MapDetailViewController.h"
 
 @interface ViewController ()
 
@@ -45,38 +46,77 @@ NSMutableArray* visibleAnnotations;
     
     self.mapView.delegate = self;
     
-    self.tableView = [[UITableView alloc] init];
-    self.tableView.delegate = self;
+    //self.tableView = [[UITableView alloc] init];
+    //self.tableView.delegate = self;
     
-    [self updateVisibleAnnotations];
+    //[self updateVisibleAnnotations];
 
 }
 
 # pragma mark - Map View methods
 - (void)updateVisibleAnnotations
 {
+    //update the visible annotations on the map
+    NSLog(@"updateVisibleAnnotations");
     visibleAnnotations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
-    [self.tableView reloadData];
+    
+    //get the center of the visible map
+    const CLLocationCoordinate2D mapCenterCoordinate = self.mapView.centerCoordinate;
+    const CLLocation *visibleCenter = [[CLLocation alloc] initWithLatitude:mapCenterCoordinate.latitude longitude:mapCenterCoordinate.longitude];
+    
+    //sort
+    NSLog(@"sorting");
+    visibleAnnotations = [visibleAnnotations sortedArrayUsingComparator: ^(id obj1, id obj2) {
+        
+        //cast objects to MKPointAnnotations
+        MKPointAnnotation *location1 = (MKPointAnnotation *)obj1;
+        MKPointAnnotation *location2 = (MKPointAnnotation *)obj2;
+        
+        //get CLLocation objects from the MKPointAnnotations' coordinates
+        CLLocation *locFromAnnot1 = [[CLLocation alloc] initWithLatitude:location1.coordinate.latitude longitude:location2.coordinate.longitude];
+        CLLocation *locFromAnnot2 = [[CLLocation alloc] initWithLatitude:location1.coordinate.latitude longitude:location2.coordinate.longitude];
+        
+        //compute each CLLocation's distance from the center of the screen
+        double distance1 = [locFromAnnot1 distanceFromLocation:visibleCenter] ;
+        double distance2 = [locFromAnnot2 distanceFromLocation:visibleCenter];
+        
+        //do the comparisons for ordering
+        if (distance1 > distance2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        } else if (distance1 < distance2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        } else {
+            return (NSComparisonResult)NSOrderedSame;
+        }
+    }];
+    
+    //reload the table after sorting
+    //[self.tableView reloadData];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    //TODO: make lightweight
-    //NSLog(@"regiondidchangeanimated");
-    
-    [self updateVisibleAnnotations];
+    NSLog(@"regiondidchangeanimated");
+    //determine how best to balance updating table vs performance given region changes often
+    //[self updateVisibleAnnotations];
 }
 
+//user location changed, so we need to update the map
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    NSLog(@"didUpdateUserLocation");
+    
+    //get the region to display
     MKCoordinateRegion mapRegion;
     mapRegion.center = self.mapView.userLocation.coordinate;
     mapRegion.span.latitudeDelta = 0.1;
     mapRegion.span.longitudeDelta = 0.1;
     
+    //display the region
     [self.mapView setRegion:mapRegion animated: NO];
     
-    [self updateVisibleAnnotations];
+    //update the visible annotaitons onscreen
+    //[self updateVisibleAnnotations];
     
 }
 
@@ -95,10 +135,48 @@ NSMutableArray* visibleAnnotations;
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:coordinates];
     [annotation setTitle:name];
+    
+    
     //TODO: add callout
     [self.mapView addAnnotation:annotation];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    NSLog(@"entering theMapView");
+    static NSString *identifier = @"MyLocation";
     
+    //if ([annotation isKindOfClass:[MyLocation class]]) {
+        
+    CLLocation *location = (CLLocation *) annotation;
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (annotationView == nil) {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:location reuseIdentifier:identifier];
+    } else {
+        annotationView.annotation = location;
+    }
+        
+    // Set the pin properties
+    annotationView.animatesDrop = NO;
+    annotationView.enabled = YES;
+    annotationView.canShowCallout = YES;
+    annotationView.pinColor = MKPinAnnotationColorGreen;
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
+    return annotationView;
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSLog(@"tapped callout");
+    
+    //cast not working right
+    Location *tappedLocation = (Location *)view.annotation;
+    NSLog(tappedLocation.name);
+    MapDetailViewController *mdvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapDetailViewController"];
+    
+    mdvc.detailLocation = tappedLocation;
+    
+    [self.navigationController pushViewController:mdvc animated:YES];
 }
 
 #pragma mark - Table View implementation
@@ -107,6 +185,7 @@ NSMutableArray* visibleAnnotations;
     return 1;
 }
 
+//TODO: buggy implementation
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [locations count];
@@ -117,14 +196,13 @@ NSMutableArray* visibleAnnotations;
     static NSString *CellIdentifier = @"CustomLocationCell";
     CustomLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    //TODO: why am I needing to do this? related to numberOfRowsInSection bug?
     if (cell == nil) {
         cell = [[CustomLocationCell alloc] init];
     }
     
-    // Configure the cell...
+    //configure the cell
     FriendlyLocation *currLocation = [visibleAnnotations objectAtIndex:indexPath.row];
-    
-    
     cell.textLabel.text = [currLocation title];
     
     return cell;
@@ -146,8 +224,15 @@ NSMutableArray* visibleAnnotations;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:
 (CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    NSLog(@"didUpdateToLocation");
+    
+    //re-center the map
     CLLocation *userLoc = self.mapView.userLocation.location;
     [self.mapView setCenterCoordinate:userLoc.coordinate animated:YES];
+    
+    //get the updated visible points on the map
+    //[self updateVisibleAnnotations];
+    //[self.tableView reloadData];
     
 }
 /*******************************************************************************
