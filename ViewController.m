@@ -15,6 +15,7 @@
 #import "LocationTableViewController.h"
 #import "CustomLocationCell.h"
 #import "MapDetailViewController.h"
+#import "MKPinAnnotationViewLocation.h"
 
 @interface ViewController ()
 
@@ -148,7 +149,7 @@ NSMutableArray* visibleAnnotations;
     //if ([annotation isKindOfClass:[MyLocation class]]) {
         
     CLLocation *location = (CLLocation *) annotation;
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    MKPinAnnotationViewLocation *annotationView = (MKPinAnnotationViewLocation *) [theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
     if (annotationView == nil) {
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:location reuseIdentifier:identifier];
     } else {
@@ -162,6 +163,7 @@ NSMutableArray* visibleAnnotations;
     annotationView.pinColor = MKPinAnnotationColorGreen;
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
+    
     return annotationView;
 }
 
@@ -170,11 +172,11 @@ NSMutableArray* visibleAnnotations;
     NSLog(@"tapped callout");
     
     //cast not working right
-    Location *tappedLocation = (Location *)view.annotation;
-    NSLog(tappedLocation.name);
+    //Location *tappedLocation = (Location *)view.annotation;
+    //NSLog(tappedLocation.name);
     MapDetailViewController *mdvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapDetailViewController"];
     
-    mdvc.detailLocation = tappedLocation;
+    //mdvc.detailLocation = tappedLocation;
     
     [self.navigationController pushViewController:mdvc animated:YES];
 }

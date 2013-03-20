@@ -3,13 +3,30 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[ViewController addFriends:]:ViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[ViewController addFriend:]:ViewController.m">
       </ContextState>
       <ContextState
+         contextName = "-[ViewController mapView:annotationView:calloutAccessoryControlTapped:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "(Location *)tappedLocation">
+            </PersistentString>
+            <PersistentString
+               value = "tappedLocation.NSManagedObject">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController addFriends:]:ViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__42-[ViewController updateVisibleAnnotations]_block_invoke:ViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "__40-[ViewController getFBMultiQUeryResults]_block_invoke:ViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController mapView:viewForAnnotation:]:ViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
