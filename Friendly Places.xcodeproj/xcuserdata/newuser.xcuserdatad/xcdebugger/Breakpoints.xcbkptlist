@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385541972.732506"
+         timestampString = "385542906.999024"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "184"
-         endingLineNumber = "184"
+         startingLineNumber = "155"
+         endingLineNumber = "155"
          landmarkName = "-addLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385541972.732506"
+         timestampString = "385542906.999024"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "221"
-         endingLineNumber = "221"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
          landmarkName = "-addLocation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ViewController.m"
-         timestampString = "385541972.732506"
+         timestampString = "385542906.999024"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "258"
-         endingLineNumber = "258"
+         startingLineNumber = "229"
+         endingLineNumber = "229"
          landmarkName = "-fetchLocations"
          landmarkType = "5">
       </FileBreakpoint>
@@ -59,19 +59,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "ViewController.m"
-         timestampString = "385541972.732506"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
-         landmarkName = "-mapView:viewForAnnotation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "MapDetailViewController.m"
          timestampString = "385539040.422006"
          startingColumnNumber = "9223372036854775807"
@@ -79,19 +66,6 @@
          startingLineNumber = "68"
          endingLineNumber = "68"
          landmarkName = "-viewWillAppear:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "ViewController.m"
-         timestampString = "385541972.732506"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
-         landmarkName = "-addToMap:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

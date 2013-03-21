@@ -9,14 +9,9 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "Location.h"
-#import "Checkin.h"
-#import "FriendlyLocation.h"
-#import <MapKit/MapKit.h>
-#import "LocationTableViewController.h"
-#import "CustomLocationCell.h"
-#import "MapDetailViewController.h"
-#import "MKPinAnnotationViewLocation.h"
 #import "MKPointAnnotationLocation.h"
+#import "MapDetailViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface ViewController ()
 
@@ -35,7 +30,7 @@ NSMutableArray* visibleAnnotations;
     [self fetchLocations];
     
     self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.purpose = @"Friendly Places needs your location to suggest places nearby";
+    //self.locationManager.purpose = @"Friendly Places needs your location to suggest places nearby"; //purpose --> deprecated
     self.locationManager.delegate = self;
     [self.locationManager setDistanceFilter:50]; // meters
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -43,10 +38,6 @@ NSMutableArray* visibleAnnotations;
     [self.locationManager startUpdatingLocation];
     
     self.mapView.delegate = self;
-    
-    //call this method if you figure out how to implement the table view
-    //below the map view without breaking scrolling
-    //[self loadTableView];
 
 }
 
@@ -71,44 +62,28 @@ NSMutableArray* visibleAnnotations;
     //display the region
     [self.mapView setRegion:mapRegion animated: NO];
     
-    //call this to update the visible annotations in order to keep
-    //in sync with table view (if you get the table view working)
-    //[self updateVisibleAnnotations];
-    
 }
 
-//add locations to mapview
+//add location to mapview
 - (void)addToMap:(Location *)someLocation {
-    // Add some new pins
+    
+    //get coordinates from lat/long
     CLLocationCoordinate2D coordinates;
     coordinates.latitude = [someLocation.latitude doubleValue];
     coordinates.longitude = [someLocation.longitude doubleValue];
     
-    NSString *name = someLocation.name;
-    NSString *website = someLocation.website;
-    //NSString *fb_id = @"test";
-    NSString *fb_id = [NSString stringWithFormat:@"%@", someLocation.fb_page_id];
-    //FriendlyLocation *annotation = [[FriendlyLocation alloc] initWithName:name coordinate:coordinates];
-    
+    //create annotation
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:coordinates];
-    [annotation setTitle:name];
-    [annotation setSubtitle:website];
-    /*annotation.website = someLocation.website;
-    annotation.street = someLocation.street;
-    annotation.description = someLocation.description;
-    annotation.phone = someLocation.phone;*/
+    [annotation setTitle:someLocation.name];
+    [annotation setSubtitle:someLocation.website];
     
+    //add to mapview
     [self.mapView addAnnotation:annotation];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    //NSLog(@"entering theMapView");
-    //MKPointAnnotationLocation *test = (MKPointAnnotationLocation *)annotation;
-
     static NSString *identifier = @"MyLocation";
-    
-    //if ([annotation isKindOfClass:[MyLocation class]]) {
         
     CLLocation *location = (CLLocation *) annotation;
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
@@ -153,10 +128,6 @@ NSMutableArray* visibleAnnotations;
     //re-center the map
     CLLocation *userLoc = self.mapView.userLocation.location;
     [self.mapView setCenterCoordinate:userLoc.coordinate animated:YES];
-    
-    //get the updated visible points on the map if we implement the tableview below the mapview
-    //[self updateVisibleAnnotations];
-    //[self.tableView reloadData];
     
 }
 /*******************************************************************************
@@ -285,7 +256,6 @@ NSMutableArray* visibleAnnotations;
     [self getFBMultiQUeryResults];
 }
 
-
 - (void)getFBMultiQUeryResults
 {
     NSString *query =
@@ -309,14 +279,6 @@ NSMutableArray* visibleAnnotations;
                                   NSLog(@"Error: %@", [error localizedDescription]);
                               } else {
                                   NSLog(@"Result: %@", result);
-                                  //add friends to context if you decide to save them
-                                  //NSMutableArray *friends = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:0] objectForKey:@"fql_result_set"]];
-                                  //[self addFriends:friends];
-                                  
-                                  
-                                  //add checkins to context if you decide to save them (...don't hardcode 1)
-                                  //NSMutableArray *checkins = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:1] objectForKey:@"fql_result_set"]];
-                                  //[self addCheckins:checkins];
                                   
                                   //get locations (HACK: don't hardcode index)
                                   NSMutableArray *locations = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:2] objectForKey:@"fql_result_set"]];
@@ -333,151 +295,6 @@ NSMutableArray* visibleAnnotations;
                               }
                           }];
     
-}
-
-#pragma mark - unused methods
-
-/***************/
-// Core Data   //
-/***************/
-
-//Methods for adding Friends. call if we decide to save friends to core data store
-- (void)addFriends:(NSMutableArray *)friends {
-    NSLog(@"adding friends");
-    for (FBGraphObject *friend in friends) {
-        [self addFriend:friend];
-    }
-}
-
-- (void)addFriend:(FBGraphObject *)friend
-{
-    NSManagedObject *newFriend = [NSEntityDescription
-                                  insertNewObjectForEntityForName:@"Friend"
-                                  inManagedObjectContext:context];
-    [newFriend setValue:[NSNumber numberWithInt:[[friend objectForKey:@"uid2"] intValue]] forKey:@"fb_id"];
-    
-}
-
-//Methods for adding Checkins to core data store
-- (void)addCheckins:(NSMutableArray *)checkins {
-    NSLog(@"adding checkins");
-    for (FBGraphObject *checkin in checkins) {
-        [self addCheckin:checkin];
-    }
-}
-
-//finish implementation to add checkins to core data store
-- (void)addCheckin:(FBGraphObject *)checkin
-{
-    NSManagedObject *newCheckin = [NSEntityDescription
-                                   insertNewObjectForEntityForName:@"Checkin"
-                                   inManagedObjectContext:context];
-    Checkin *newCheckinInstance = (Checkin *)newCheckin;
-    
-    //TODO: change model
-    //NSNumber * id;
-    
-    //NSNumber * fb_checkin_id;
-    newCheckinInstance.fb_checkin_id = [NSNumber numberWithInt:[[checkin objectForKey:@"checkin_id"] intValue]];
-    
-    //NSDate * timestamp;
-    newCheckinInstance.timestamp = [NSDate dateWithTimeIntervalSince1970:
-                                    [[checkin objectForKey:@"timestamp"] doubleValue]];
-    
-    
-    //NSManagedObject *checkin_location;
-    //use predicate to fetch off [NSNumber numberWithInt:[[checkin objectForKey:@"page_id"] intValue]];
-    
-}
-
-/***********/
-// Map   //
-/**********/
-
-- (void)updateVisibleAnnotations
-{
-    //update the visible annotations on the map
-    NSLog(@"updateVisibleAnnotations");
-    visibleAnnotations = [[self.mapView annotationsInMapRect:self.mapView.visibleMapRect] allObjects];
-    
-    //get the center of the visible map
-    const CLLocationCoordinate2D mapCenterCoordinate = self.mapView.centerCoordinate;
-    const CLLocation *visibleCenter = [[CLLocation alloc] initWithLatitude:mapCenterCoordinate.latitude longitude:mapCenterCoordinate.longitude];
-    
-    //sort
-    NSLog(@"sorting");
-    visibleAnnotations = [visibleAnnotations sortedArrayUsingComparator: ^(id obj1, id obj2) {
-        
-        //cast objects to MKPointAnnotations
-        MKPointAnnotation *location1 = (MKPointAnnotation *)obj1;
-        MKPointAnnotation *location2 = (MKPointAnnotation *)obj2;
-        
-        //get CLLocation objects from the MKPointAnnotations' coordinates
-        CLLocation *locFromAnnot1 = [[CLLocation alloc] initWithLatitude:location1.coordinate.latitude longitude:location2.coordinate.longitude];
-        CLLocation *locFromAnnot2 = [[CLLocation alloc] initWithLatitude:location1.coordinate.latitude longitude:location2.coordinate.longitude];
-        
-        //compute each CLLocation's distance from the center of the screen
-        double distance1 = [locFromAnnot1 distanceFromLocation:visibleCenter] ;
-        double distance2 = [locFromAnnot2 distanceFromLocation:visibleCenter];
-        
-        //do the comparisons for ordering
-        if (distance1 > distance2) {
-            return (NSComparisonResult)NSOrderedDescending;
-        } else if (distance1 < distance2) {
-            return (NSComparisonResult)NSOrderedAscending;
-        } else {
-            return (NSComparisonResult)NSOrderedSame;
-        }
-    }];
-    
-    //reload the table after sorting
-    [self.tableView reloadData];
-}
-
-/***********/
-// Table   //
-/**********/
-
--(void)loadTableView
-{
-    self.tableView = [[UITableView alloc] init];
-    self.tableView.delegate = self;
-    [self updateVisibleAnnotations];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-//TODO: buggy implementation
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
-    //return [locations count];
-}
-
-- (CustomLocationCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"CustomLocationCell";
-    CustomLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    //TODO: why am I needing to do this? related to numberOfRowsInSection bug?
-    if (cell == nil) {
-        cell = [[CustomLocationCell alloc] init];
-    }
-    
-    //configure the cell
-    FriendlyLocation *currLocation = [visibleAnnotations objectAtIndex:indexPath.row];
-    cell.textLabel.text = [currLocation title];
-    
-    return cell;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

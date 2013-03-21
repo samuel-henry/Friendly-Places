@@ -9,8 +9,6 @@
 #import <MapKit/MapKit.h>
 
 @interface MKPointAnnotationLocation : MKPointAnnotation
-@property (weak, nonatomic) NSString *description;
-@property (weak, nonatomic) NSString *phone;
-@property (weak, nonatomic) NSString *street;
 @property (weak, nonatomic) NSString *website;
+
 @end

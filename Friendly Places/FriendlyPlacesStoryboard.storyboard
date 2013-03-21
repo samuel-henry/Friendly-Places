@@ -27,27 +27,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSL-06-Ua2">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="IeM-PM-DHR"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CustomLocationCell" rowHeight="80" id="URa-w5-8EW" customClass="CustomLocationCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="qCl-dk-zcb" id="ikN-fV-mmy"/>
-                                    <outlet property="delegate" destination="qCl-dk-zcb" id="1Pu-Eo-BuF"/>
-                                </connections>
-                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M55-iu-Dhf">
                                 <items>
                                     <navigationItem id="Bdo-Of-1WJ">
@@ -89,20 +68,17 @@
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-WL-jNx">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="dbO-N3-I0l"/>
+                                    <constraint firstAttribute="height" constant="376" id="xYO-cr-w7K"/>
                                 </constraints>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nVs-WL-jNx" firstAttribute="top" secondItem="M55-iu-Dhf" secondAttribute="bottom" type="default" id="5s2-TP-bl5"/>
-                            <constraint firstAttribute="bottom" secondItem="YSL-06-Ua2" secondAttribute="bottom" constant="196" id="KTg-NZ-pxV"/>
-                            <constraint firstItem="YSL-06-Ua2" firstAttribute="trailing" secondItem="9gn-Ym-5uG" secondAttribute="trailing" type="default" id="ROG-ua-X6Y"/>
                             <constraint firstItem="nVs-WL-jNx" firstAttribute="trailing" secondItem="9gn-Ym-5uG" secondAttribute="trailing" type="default" id="dwd-j2-KrN"/>
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="trailing" secondItem="9gn-Ym-5uG" secondAttribute="trailing" type="default" id="eZh-25-irf"/>
                             <constraint firstItem="nVs-WL-jNx" firstAttribute="leading" secondItem="9gn-Ym-5uG" secondAttribute="leading" type="default" id="hXI-cZ-M6v"/>
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="top" secondItem="9gn-Ym-5uG" secondAttribute="top" type="default" id="qym-Px-Fd1"/>
-                            <constraint firstItem="YSL-06-Ua2" firstAttribute="leading" secondItem="9gn-Ym-5uG" secondAttribute="leading" type="default" id="tBK-U1-SIy"/>
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="leading" secondItem="9gn-Ym-5uG" secondAttribute="leading" type="default" id="yS9-Rb-0gF"/>
                         </constraints>
                     </view>
@@ -173,9 +149,6 @@
         </scene>
     </scenes>
     <classes>
-        <class className="CustomLocationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomLocationCell.h"/>
-        </class>
         <class className="MapDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapDetailViewController.h"/>
             <relationships>
