@@ -8,26 +8,46 @@
 
 #import "MapDetailViewController.h"
 #import "Location.h"
+#import "AppDelegate.h"
 
 @interface MapDetailViewController ()
 @end
 
 @implementation MapDetailViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+AppDelegate* appDelegate;
+NSManagedObjectContext* context;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(self.detailLocation.name);
-	// Do any additional setup after loading the view.
+    
+    // Do any additional setup after loading the view from its nib.
+    appDelegate = [AppDelegate sharedAppDelegate];
+    context = appDelegate.managedObjectContext;
+    
+    //get locations from DB
+    [self displayLocation];
+}
+
+- (void) displayLocation
+{
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Location"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"fb_page_id == %@", self.fb_page_id];
+    [fetchRequest setPredicate:predicate];
+    
+    
+    NSError *error;
+    
+    Location *currLocation = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if (currLocation == nil) {
+        NSLog(@"error fetching location in detail view");
+    } else {
+        NSLog(@"fetched location in detail view");
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

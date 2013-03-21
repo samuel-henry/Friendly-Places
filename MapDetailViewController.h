@@ -11,6 +11,6 @@
 
 @interface MapDetailViewController : UIViewController
 
-    @property (strong, nonatomic) Location *detailLocation;
+    @property (strong, nonatomic) NSNumber *fb_page_id;
 
 @end

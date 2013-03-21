@@ -117,7 +117,7 @@ NSMutableArray* visibleAnnotations;
     [self.mapView setRegion:mapRegion animated: NO];
     
     //update the visible annotaitons onscreen
-    //[self updateVisibleAnnotations];
+    [self updateVisibleAnnotations];
     
 }
 
@@ -136,6 +136,7 @@ NSMutableArray* visibleAnnotations;
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:coordinates];
     [annotation setTitle:name];
+    [annotation setSubtitle:[someLocation.fb_page_id stringValue]];
     
     
     //TODO: add callout
@@ -175,8 +176,8 @@ NSMutableArray* visibleAnnotations;
     //Location *tappedLocation = (Location *)view.annotation;
     //NSLog(tappedLocation.name);
     MapDetailViewController *mdvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapDetailViewController"];
-    
-    //mdvc.detailLocation = tappedLocation;
+    MKPointAnnotation *locationAnnotation = (MKPointAnnotation *)view.annotation;
+    mdvc.fb_page_id = locationAnnotation.subtitle;
     
     [self.navigationController pushViewController:mdvc animated:YES];
 }
