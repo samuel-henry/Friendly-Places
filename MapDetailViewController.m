@@ -47,6 +47,7 @@
  *                  Goes back one page in the history
  ******************************************************************************/
 - (IBAction)backButtonClicked:(id)sender {
+    ALog(@"Back button tapped");
     [self.detailViewWebView goBack];
 }
 
@@ -56,6 +57,7 @@
  *                  Goes forward one page in the history
  ******************************************************************************/
 - (IBAction)forwardButtonClicked:(id)sender {
+    ALog(@"Forward button tapped");
     [self.detailViewWebView goForward];
 }
 

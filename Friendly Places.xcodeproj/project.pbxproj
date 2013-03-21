@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20D60AE16FB6EDB00C611A3 /* Navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D60AD16FB6EDB00C611A3 /* Navbar.png */; };
 		B2152E2D16FABC7600B3157B /* MKPinAnnotationViewLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2152E2C16FABC7600B3157B /* MKPinAnnotationViewLocation.m */; };
 		B2152E3116FAD2BE00B3157B /* MKPointAnnotationLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2152E3016FAD2BD00B3157B /* MKPointAnnotationLocation.m */; };
+		B22B928B16FB7D520041B1C0 /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B928A16FB7D520041B1C0 /* SplashScreenViewController.m */; };
 		B26D51A916F3DEF100F517FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26D51A816F3DEF100F517FF /* CoreLocation.framework */; };
 		B26F91EE16F2910B00372161 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B26F91ED16F2910B00372161 /* Settings.bundle */; };
 		B292FF6116F9C57B0095171E /* MapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B292FF6016F9C57B0095171E /* MapDetailViewController.m */; };
@@ -59,10 +61,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B20D60AD16FB6EDB00C611A3 /* Navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navbar.png; sourceTree = "<group>"; };
 		B2152E2B16FABC7500B3157B /* MKPinAnnotationViewLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPinAnnotationViewLocation.h; sourceTree = "<group>"; };
 		B2152E2C16FABC7600B3157B /* MKPinAnnotationViewLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPinAnnotationViewLocation.m; sourceTree = "<group>"; };
 		B2152E2F16FAD2BD00B3157B /* MKPointAnnotationLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPointAnnotationLocation.h; sourceTree = "<group>"; };
 		B2152E3016FAD2BD00B3157B /* MKPointAnnotationLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPointAnnotationLocation.m; sourceTree = "<group>"; };
+		B22B928916FB7D520041B1C0 /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
+		B22B928A16FB7D520041B1C0 /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
 		B26D51A816F3DEF100F517FF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B26F91ED16F2910B00372161 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B292FF5F16F9C57B0095171E /* MapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapDetailViewController.h; path = ../MapDetailViewController.h; sourceTree = "<group>"; };
@@ -204,6 +209,8 @@
 				B2BCEA6716E29EC80050D167 /* ViewController.m */,
 				B2BCEA6816E29EC80050D167 /* ViewController.xib */,
 				B2BCEA6416E29DED0050D167 /* FriendlyPlacesStoryboard.storyboard */,
+				B22B928916FB7D520041B1C0 /* SplashScreenViewController.h */,
+				B22B928A16FB7D520041B1C0 /* SplashScreenViewController.m */,
 				B2152E2E16FABCA900B3157B /* Map Files */,
 				B2BCEA6316E29D810050D167 /* Core Data */,
 				B2BCEA2716E29B780050D167 /* Supporting Files */,
@@ -217,6 +224,7 @@
 				B2D8EF5F16FB038D002B0403 /* Icon.png */,
 				B2D8EF6016FB038D002B0403 /* Icon@2x.png */,
 				B2D8EF6716FB0404002B0403 /* Default-568h@2x.png */,
+				B20D60AD16FB6EDB00C611A3 /* Navbar.png */,
 				B2D8EF6516FB039F002B0403 /* Icon@2x.png */,
 				B2D8EF6316FB039A002B0403 /* Icon.png */,
 				B2BCEA2816E29B780050D167 /* Friendly Places-Info.plist */,
@@ -347,6 +355,7 @@
 				B2D8EF6416FB039A002B0403 /* Icon.png in Resources */,
 				B2D8EF6616FB039F002B0403 /* Icon@2x.png in Resources */,
 				B2D8EF6816FB0404002B0403 /* Default-568h@2x.png in Resources */,
+				B20D60AE16FB6EDB00C611A3 /* Navbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +398,7 @@
 				B2BCEA7316E2B5130050D167 /* Location.m in Sources */,
 				B292FF6116F9C57B0095171E /* MapDetailViewController.m in Sources */,
 				B2152E3116FAD2BE00B3157B /* MKPointAnnotationLocation.m in Sources */,
+				B22B928B16FB7D520041B1C0 /* SplashScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +508,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Friendly Places/Friendly Places-Prefix.pch";
 				INFOPLIST_FILE = "Friendly Places/Friendly Places-Info.plist";
+				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lsqlite3.0",

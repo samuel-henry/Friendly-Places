@@ -14,6 +14,7 @@
 #import "Location.h"
 #import "MKPointAnnotationLocation.h"
 #import "MapDetailViewController.h"
+#import "SplashScreenViewController.h"
 #import <MapKit/MapKit.h>
 
 @interface ViewController ()
@@ -32,6 +33,14 @@ NSMutableArray* visibleAnnotations;
     //get locations from DB
     [self fetchLocations];
     
+    //reference to the Peek View
+    SplashScreenViewController *ssvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"SplashScreenViewController"];
+    [self presentViewController:ssvc animated:NO completion:^{
+        NSLog(@"SplashScreenViewController did appear");
+        
+        [self performSelector:@selector(dismissSplashScreenController) withObject:nil afterDelay:5];
+    }];
+    
     self.locationManager = [[CLLocationManager alloc] init];
     //self.locationManager.purpose = @"Friendly Places needs your location to suggest places nearby"; //purpose --> deprecated
     self.locationManager.delegate = self;
@@ -44,16 +53,18 @@ NSMutableArray* visibleAnnotations;
 
 }
 
-# pragma mark - Map View methods
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+- (void)dismissSplashScreenController
 {
-    NSLog(@"regiondidchangeanimated");
+    [self dismissViewControllerAnimated:YES completion:^{
+        ALog(@"SplashScreenViewController is dismissed");
+    }];
 }
+
+# pragma mark - Map View methods
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation");
+    ALog(@"didUpdateUserLocation");
 
     //get the region to display
     MKCoordinateRegion mapRegion;
@@ -89,6 +100,7 @@ NSMutableArray* visibleAnnotations;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
     static NSString *identifier = @"MyLocation";
         
     CLLocation *location = (CLLocation *) annotation;
@@ -116,6 +128,9 @@ NSMutableArray* visibleAnnotations;
     MKPointAnnotationLocation *locationAnnotation = (MKPointAnnotationLocation *)view.annotation;
     mdvc.website = locationAnnotation.subtitle;
     mdvc.name = locationAnnotation.title;
+    DLog(@"Transitioning to map detail view");
+    DLog(mdvc.name);
+    DLog(mdvc.website);
     
     [self.navigationController pushViewController:mdvc animated:YES];
 }
@@ -125,8 +140,6 @@ NSMutableArray* visibleAnnotations;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:
 (CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"didUpdateToLocation");
-    
     //re-center the map
     CLLocation *userLoc = self.mapView.userLocation.location;
     [self.mapView setCenterCoordinate:userLoc.coordinate animated:YES];
@@ -136,7 +149,7 @@ NSMutableArray* visibleAnnotations;
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError
                                                                        *)error
 {
-    NSLog(@"Could not find location: %@", error);
+    ALog(@"Could not find location: %@", error);
 }
 
 #pragma mark -- Core Data methods
@@ -147,7 +160,7 @@ NSMutableArray* visibleAnnotations;
  *                  method to generate Core Data Location object
  ******************************************************************************/
 - (void)addLocations:(NSMutableArray *)locations {
-    NSLog(@"adding locations");
+    ALog(@"Creating Core Data Locations from FBGraphObjects");
     for (FBGraphObject *location in locations) {
         [self createCoreDataLocation:location];
     }
@@ -223,7 +236,7 @@ NSMutableArray* visibleAnnotations;
     
     //NSString * zip;
     newLocationInstance.zip = [[location objectForKey:@"location"] objectForKey:@"zip"];
-  
+    
 }
 
 /*******************************************************************************
@@ -242,22 +255,26 @@ NSMutableArray* visibleAnnotations;
     NSArray *locations = [context executeFetchRequest:fetchRequest error:&error];
     
     if (locations == nil) {
-        NSLog(@"error fetching locations");
+        [self getFBMultiQUeryResults];
     } else {
-        NSLog(@"fetched locations");
+        ALog(@"fetched locations");
         for (int i=0; i<locations.count; i++) {
             [self addToMap:locations[i]];
         }
     }
+    
+    
 }
 
 #pragma mark -- Facebook methods
 
 /*******************************************************************************
- * @method          loginClicked
+ * @method          loginNavButtonTapped
  * @description     Initiates user authorizing/signing in app with Facebook
  ******************************************************************************/
-- (IBAction)loginClicked:(UIButton *)sender {
+- (IBAction)loginNavButtonTapped:(UIButton *)sender {
+    ALog(@"Login clicked");
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     // The user has initiated a login, so call the openSession method
@@ -266,11 +283,12 @@ NSMutableArray* visibleAnnotations;
 }
 
 /*******************************************************************************
- * @method          getDataClicked
+ * @method          getCheckinsNavButtonTapped
  * @description     Initiates retrieval of user's Facebook friends, their 
  *                  checkins, and the corresponding Facebook page locations
  ******************************************************************************/
-- (IBAction)getDataClicked:(UIButton *)sender {
+- (IBAction)getCheckinsNavButtonTapped:(UIButton *)sender {
+    ALog(@"Get Data clicked");
     [self getFBMultiQUeryResults];
 }
 
@@ -308,9 +326,9 @@ NSMutableArray* visibleAnnotations;
                                               id result,
                                               NSError *error) {
                               if (error) {
-                                  NSLog(@"Error: %@", [error localizedDescription]);
+                                  ALog(@"Error: %@", [error localizedDescription]);
                               } else {
-                                  NSLog(@"Result: %@", result);
+                                  DLog(@"Result: %@", result);
                                   
                                   //get locations (HACK: don't hardcode index)
                                   NSMutableArray *locations = [NSMutableArray arrayWithArray:[[[result objectForKey:@"data"] objectAtIndex:2] objectForKey:@"fql_result_set"]];
@@ -321,12 +339,14 @@ NSMutableArray* visibleAnnotations;
                                   if (![context save:&error]) {
                                       //handle error
                                   } else {
-                                      NSLog(@"Saved context");
+                                      ALog(@"Saved context");
+                                      [self fetchLocations];
                                   }
                                 
                               }
                           }];
     
 }
+
 
 @end

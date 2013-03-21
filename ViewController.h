@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+- (IBAction)loginNavButtonTapped:(id)sender;
+- (IBAction)getCheckinsNavButtonTapped:(id)sender;
 
 
 

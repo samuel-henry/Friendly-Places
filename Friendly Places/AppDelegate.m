@@ -24,11 +24,14 @@ NSString *const FBSessionStateChangedNotification =
 {
     [self setPreferenceDefaults];
     
+    [self setAppearanceDefaults];
+    
     return YES;
 }
 
 /*******************************************************************************
- * @method setPreferencesDefaults
+ * @method          setPreferencesDefaults
+ * @description     Set the user's app prefrences in NSUserDefaults
  ******************************************************************************/
 - (void)setPreferenceDefaults
 {
@@ -42,6 +45,29 @@ NSString *const FBSessionStateChangedNotification =
     NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults]
                                   dictionaryRepresentation]);
     
+}
+
+/*******************************************************************************
+ * @method          setAppearanceDefaults
+ * @description     Set the app's appearance proxies 
+ ******************************************************************************/
+- (void)setAppearanceDefaults
+{
+    UIImage *image = [UIImage imageNamed:@"Navbar.png"];
+    [[UINavigationBar appearance] setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
+    //customize text for navbars (http://www.raywenderlich.com/4344/user-interface-customization-in-ios-5)
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:104.0/255.0 green:243.0/255.0 blue:18.0/255.0 alpha:1.0],
+      UITextAttributeTextColor,
+      [UIColor colorWithRed:5.0 green:41.0 blue:250.0 alpha:0.8],
+      UITextAttributeTextShadowColor,
+      [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+      UITextAttributeTextShadowOffset,
+      [UIFont fontWithName:@"Arial-Bold" size:8.0],
+      UITextAttributeFont,
+      nil]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -95,9 +121,10 @@ NSString *const FBSessionStateChangedNotification =
 }
 
 #pragma mark - Facebook methods
-/*
- * Callback for session changes.
- */
+/*******************************************************************************
+ * @method          sessionStateChanged
+ * @description     Callback for FB session state change
+ ******************************************************************************/
 - (void)sessionStateChanged:(FBSession *)session
                       state:(FBSessionState) state
                       error:(NSError *)error
@@ -107,6 +134,7 @@ NSString *const FBSessionStateChangedNotification =
             if (!error) {
                 // We have a valid session
                 NSLog(@"User session found");
+            
             }
             break;
         case FBSessionStateClosed:
@@ -132,11 +160,12 @@ NSString *const FBSessionStateChangedNotification =
     }
 }
 
-/*
- * Opens a Facebook session and optionally shows the login UX.
- */
+/*******************************************************************************
+ * @method          openSessionWithAllowLoginUI
+ * @description     Open the user's FB session using the login webview
+ ******************************************************************************/
 - (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
-    
+    //persmissions my app needs
     NSArray *permissions = [[NSArray alloc] initWithObjects:
                             @"email",
                             @"user_likes",
@@ -159,10 +188,12 @@ NSString *const FBSessionStateChangedNotification =
                                          }];
 }
 
-/*
- * If we have a valid session at the time of openURL call, we handle
- * Facebook transitions by passing the url argument to handleOpenURL
- */
+ /*******************************************************************************
+ * @method          openSessionWithAllowLoginUI
+ * @description     If we have a valid session at the time of openURL call, we 
+ *                  handle Facebook transitions by passing the url argument to 
+ *                  handleOpenURL
+ ******************************************************************************/
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -170,6 +201,7 @@ NSString *const FBSessionStateChangedNotification =
     // attempt to extract a token from the url
     return [FBSession.activeSession handleOpenURL:url];
 }
+
 
 #pragma mark - Core Data stack
 
