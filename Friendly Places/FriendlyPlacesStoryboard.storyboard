@@ -70,28 +70,35 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Samuel Henry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-VV-NBE">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="fpa-S7-Y8G" secondAttribute="bottom" constant="272" id="4bs-RQ-Ewf"/>
                                     <constraint firstItem="fpa-S7-Y8G" firstAttribute="trailing" secondItem="FXW-Ed-m4i" secondAttribute="trailing" type="default" id="88T-TI-rul"/>
+                                    <constraint firstItem="aeP-VV-NBE" firstAttribute="centerX" secondItem="dlu-dW-qMY" secondAttribute="centerX" type="default" id="8jM-iI-hgP"/>
+                                    <constraint firstItem="aeP-VV-NBE" firstAttribute="top" secondItem="dlu-dW-qMY" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Atw-fu-kFi"/>
                                     <constraint firstAttribute="bottom" secondItem="Bt2-Sn-HdD" secondAttribute="bottom" constant="228" id="ClL-25-P05"/>
+                                    <constraint firstItem="aeP-VV-NBE" firstAttribute="centerX" secondItem="fpa-S7-Y8G" secondAttribute="centerX" type="default" id="ILz-Ty-i3z"/>
                                     <constraint firstItem="fpa-S7-Y8G" firstAttribute="leading" secondItem="FXW-Ed-m4i" secondAttribute="leading" type="default" id="Lm1-SG-eq1"/>
-                                    <constraint firstItem="fpa-S7-Y8G" firstAttribute="centerX" secondItem="dlu-dW-qMY" secondAttribute="centerX" type="default" id="MUt-GZ-RhO"/>
                                     <constraint firstItem="cEa-kY-8Iy" firstAttribute="leading" secondItem="FXW-Ed-m4i" secondAttribute="leading" constant="33" id="SWx-qI-4qt"/>
                                     <constraint firstItem="fEV-do-KvC" firstAttribute="leading" secondItem="Bt2-Sn-HdD" secondAttribute="leading" type="default" id="TlE-Pq-p8Z"/>
                                     <constraint firstAttribute="bottom" secondItem="cEa-kY-8Iy" secondAttribute="bottom" constant="162" id="Tt0-ld-GUy"/>
+                                    <constraint firstItem="dlu-dW-qMY" firstAttribute="top" secondItem="FXW-Ed-m4i" secondAttribute="top" constant="171" id="b0A-jj-sW4"/>
                                     <constraint firstAttribute="bottom" secondItem="fEV-do-KvC" secondAttribute="bottom" constant="188" id="dKP-m3-n94"/>
                                     <constraint firstItem="Bt2-Sn-HdD" firstAttribute="leading" secondItem="FXW-Ed-m4i" secondAttribute="leading" constant="15" id="etp-VB-duE"/>
-                                    <constraint firstItem="fpa-S7-Y8G" firstAttribute="top" secondItem="FXW-Ed-m4i" secondAttribute="top" constant="374" scoringType="5" id="hqn-eM-uGE"/>
-                                    <constraint firstItem="dlu-dW-qMY" firstAttribute="top" secondItem="FXW-Ed-m4i" secondAttribute="top" constant="232" id="uMc-lZ-b6j"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FXW-Ed-m4i" firstAttribute="trailing" secondItem="xVA-PZ-Jc1" secondAttribute="trailing" type="default" id="8Om-Mg-4Hb"/>
-                            <constraint firstItem="FXW-Ed-m4i" firstAttribute="top" secondItem="xVA-PZ-Jc1" secondAttribute="top" constant="-89" id="jUo-pF-IXL"/>
+                            <constraint firstAttribute="bottom" secondItem="FXW-Ed-m4i" secondAttribute="bottom" constant="-39" id="EY9-tq-X6P"/>
+                            <constraint firstItem="FXW-Ed-m4i" firstAttribute="top" secondItem="xVA-PZ-Jc1" secondAttribute="top" constant="-91" id="NpA-Nd-ewx"/>
                             <constraint firstItem="FXW-Ed-m4i" firstAttribute="leading" secondItem="xVA-PZ-Jc1" secondAttribute="leading" constant="-6" id="jbl-9B-qIa"/>
                         </constraints>
                     </view>

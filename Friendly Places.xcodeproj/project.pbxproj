@@ -73,7 +73,7 @@
 		B292FF5F16F9C57B0095171E /* MapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapDetailViewController.h; path = ../MapDetailViewController.h; sourceTree = "<group>"; };
 		B292FF6016F9C57B0095171E /* MapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapDetailViewController.m; path = ../MapDetailViewController.m; sourceTree = "<group>"; };
 		B2B17B0416E97C8700E4F531 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		B2BCEA1B16E29B780050D167 /* Friendly Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Friendly Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BCEA1B16E29B780050D167 /* FPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2BCEA1E16E29B780050D167 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B2BCEA2016E29B780050D167 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2BCEA2216E29B780050D167 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -174,7 +174,7 @@
 		B2BCEA1C16E29B780050D167 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B2BCEA1B16E29B780050D167 /* Friendly Places.app */,
+				B2BCEA1B16E29B780050D167 /* FPlaces.app */,
 				B2BCEA4016E29B780050D167 /* Friendly PlacesTests.octest */,
 			);
 			name = Products;
@@ -288,7 +288,7 @@
 			);
 			name = "Friendly Places";
 			productName = "Friendly Places";
-			productReference = B2BCEA1B16E29B780050D167 /* Friendly Places.app */;
+			productReference = B2BCEA1B16E29B780050D167 /* FPlaces.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B2BCEA3F16E29B780050D167 /* Friendly PlacesTests */ = {
@@ -513,7 +513,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FPlaces;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -532,7 +532,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FPlaces;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
