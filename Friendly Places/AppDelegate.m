@@ -22,13 +22,26 @@ NSString *const FBSessionStateChangedNotification =
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self customizeAppearance];
+    [self setPreferenceDefaults];
+    
     return YES;
 }
 
--(void)customizeAppearance
+/*******************************************************************************
+ * @method setPreferencesDefaults
+ ******************************************************************************/
+- (void)setPreferenceDefaults
 {
-    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"background.jpg"] forBarMetrics:UIBarMetricsDefault];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:[NSDate date] forKey:@"Initial Run"];
+    [defaults registerDefaults:appDefaults];
+    
+    // Set your intial preferences in a .plist
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
+    
+    NSLog(@"NSUserDefaults: %@", [[NSUserDefaults standardUserDefaults]
+                                  dictionaryRepresentation]);
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
