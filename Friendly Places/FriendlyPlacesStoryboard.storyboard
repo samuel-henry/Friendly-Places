@@ -109,6 +109,7 @@
                                     <constraint firstAttribute="width" constant="73" id="J8h-lN-p2T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="tintColor" red="0.057067057249999997" green="0.33333333329999998" blue="0.043946207260000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="&lt;">
                                     <color key="titleColor" red="0.057067057249999997" green="0.33333333329999998" blue="0.043946207260000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,6 +126,7 @@
                                     <constraint firstAttribute="width" constant="73" id="QjB-LR-6jo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" red="0.057067057249999997" green="0.33333333329999998" blue="0.043946207260000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title=">">
                                     <color key="titleColor" red="0.057067057249999997" green="0.33333333329999998" blue="0.043946207260000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -166,9 +168,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backButtonClicked:"/>
-                <relationship kind="action" name="backButtonTapped:"/>
                 <relationship kind="action" name="forwardButtonClicked:"/>
-                <relationship kind="action" name="forwardButtonTapped:"/>
                 <relationship kind="outlet" name="detailViewWebView" candidateClass="UIWebView"/>
             </relationships>
         </class>
