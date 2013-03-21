@@ -13,7 +13,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "155"
          endingLineNumber = "155"
-         landmarkName = "-addLocation:"
+         landmarkName = "-createCoreDataLocation:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -26,7 +26,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "192"
          endingLineNumber = "192"
-         landmarkName = "-addLocation:"
+         landmarkName = "-createCoreDataLocation:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

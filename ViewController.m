@@ -5,6 +5,9 @@
 //  Created by Sam on 3/2/13.
 //  Copyright (c) 2013 sam henry. All rights reserved.
 //
+//  Description:    Main view controller. Handles FB authorization, FB data retrieval,
+//                  and map view population.
+//
 
 #import "ViewController.h"
 #import "AppDelegate.h"
@@ -48,11 +51,10 @@ NSMutableArray* visibleAnnotations;
     NSLog(@"regiondidchangeanimated");
 }
 
-//user location changed, so we need to update the map
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     NSLog(@"didUpdateUserLocation");
-    
+
     //get the region to display
     MKCoordinateRegion mapRegion;
     mapRegion.center = self.mapView.userLocation.coordinate;
@@ -64,7 +66,11 @@ NSMutableArray* visibleAnnotations;
     
 }
 
-//add location to mapview
+/*******************************************************************************
+ * @method          addToMap
+ * @description     Add a Core Data Location object to the map by creating 
+ *                  an annotation.
+ ******************************************************************************/
 - (void)addToMap:(Location *)someLocation {
     
     //get coordinates from lat/long
@@ -115,11 +121,7 @@ NSMutableArray* visibleAnnotations;
 }
 
 #pragma mark -- Core Location Manager methods
-/*******************************************************************************
- * @method locationManager:didUpdateToLocation:fromLocation
- * @abstract <# Abstract #>
- * @description <# Description #>
- ******************************************************************************/
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:
 (CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
@@ -130,11 +132,7 @@ NSMutableArray* visibleAnnotations;
     [self.mapView setCenterCoordinate:userLoc.coordinate animated:YES];
     
 }
-/*******************************************************************************
- * @method locationManager:didFailWithError
- * @abstract <# Abstract #>
- * @description <# Description #>
- ******************************************************************************/
+
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError
                                                                        *)error
 {
@@ -142,16 +140,25 @@ NSMutableArray* visibleAnnotations;
 }
 
 #pragma mark -- Core Data methods
-//TODO: move to own class
-//Methods for adding Locations
+
+/*******************************************************************************
+ * @method          addLocations
+ * @description     Loops through FBGraphObjects representing locations and calls
+ *                  method to generate Core Data Location object
+ ******************************************************************************/
 - (void)addLocations:(NSMutableArray *)locations {
     NSLog(@"adding locations");
     for (FBGraphObject *location in locations) {
-        [self addLocation:location];
+        [self createCoreDataLocation:location];
     }
 }
 
-- (void)addLocation:(FBGraphObject *)location
+/*******************************************************************************
+ * @method          createCoreDataLocation
+ * @description     Creates an individual Core Data Loction object from a
+ *                  FBGraphObject
+ ******************************************************************************/
+- (void)createCoreDataLocation:(FBGraphObject *)location
 {
     NSManagedObject *newLocation = [NSEntityDescription
                                     insertNewObjectForEntityForName:@"Location"
@@ -219,7 +226,10 @@ NSMutableArray* visibleAnnotations;
   
 }
 
-//fetch Core Data Locations
+/*******************************************************************************
+ * @method          fetchLocations
+ * @description     Fetch all Core Data Location objects from data store
+ ******************************************************************************/
 - (void)fetchLocations {
     //get appdelegate and context for core data fetch
     appDelegate = [AppDelegate sharedAppDelegate];
@@ -235,15 +245,18 @@ NSMutableArray* visibleAnnotations;
         NSLog(@"error fetching locations");
     } else {
         NSLog(@"fetched locations");
-    }
-    
-    for (int i=0; i<locations.count; i++) {
-        [self addToMap:locations[i]];
+        for (int i=0; i<locations.count; i++) {
+            [self addToMap:locations[i]];
+        }
     }
 }
 
 #pragma mark -- Facebook methods
 
+/*******************************************************************************
+ * @method          loginClicked
+ * @description     Initiates user authorizing/signing in app with Facebook
+ ******************************************************************************/
 - (IBAction)loginClicked:(UIButton *)sender {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
@@ -252,12 +265,30 @@ NSMutableArray* visibleAnnotations;
     [appDelegate openSessionWithAllowLoginUI:YES];
 }
 
+/*******************************************************************************
+ * @method          getDataClicked
+ * @description     Initiates retrieval of user's Facebook friends, their 
+ *                  checkins, and the corresponding Facebook page locations
+ ******************************************************************************/
 - (IBAction)getDataClicked:(UIButton *)sender {
     [self getFBMultiQUeryResults];
 }
 
+/*******************************************************************************
+ * @method          getFBMultiQUeryResults
+ * @description     Executes FQL multiquery against Facebook Graph to retrieve
+ *                  user's Facebook friends, their checkins, and the 
+ *                  corresponding Facebook page locations
+ ******************************************************************************/
 - (void)getFBMultiQUeryResults
 {
+    //three-part FQL multi-query:
+    //  1. Get user's friends
+    //  2. Use results of 1 to get user's friends' checkins
+    //  3. Use results of 2 to get checkin locations
+    //
+    //  Execute as multiquery rather than three individual queries for best performance
+    
     NSString *query =
     @"{"
     @"'queryfriends':'SELECT uid2 FROM friend WHERE uid1 = me()',"
@@ -268,6 +299,7 @@ NSMutableArray* visibleAnnotations;
     // Set up the query parameter
     NSDictionary *queryParam = [NSDictionary dictionaryWithObjectsAndKeys:
                                 query, @"q", nil];
+    
     // Make the API request that uses FQL
     [FBRequestConnection startWithGraphPath:@"/fql"
                                  parameters:queryParam

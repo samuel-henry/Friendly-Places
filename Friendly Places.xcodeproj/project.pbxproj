@@ -41,7 +41,6 @@
 		B2BCEA7016E2B5020050D167 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BCEA6F16E2B5020050D167 /* Friend.m */; };
 		B2BCEA7316E2B5130050D167 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BCEA7216E2B5130050D167 /* Location.m */; };
 		B2BCEA7616E2B53E0050D167 /* Checkin.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BCEA7516E2B53E0050D167 /* Checkin.m */; };
-		B2D8EF5E16FAF82E002B0403 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF5D16FAF82E002B0403 /* background.jpg */; };
 		B2D8EF6116FB038D002B0403 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF5F16FB038D002B0403 /* Icon.png */; };
 		B2D8EF6216FB038D002B0403 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF6016FB038D002B0403 /* Icon@2x.png */; };
 		B2D8EF6416FB039A002B0403 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF6316FB039A002B0403 /* Icon.png */; };
@@ -105,7 +104,6 @@
 		B2BCEA7216E2B5130050D167 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		B2BCEA7416E2B53E0050D167 /* Checkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkin.h; sourceTree = "<group>"; };
 		B2BCEA7516E2B53E0050D167 /* Checkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkin.m; sourceTree = "<group>"; };
-		B2D8EF5D16FAF82E002B0403 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		B2D8EF5F16FB038D002B0403 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		B2D8EF6016FB038D002B0403 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		B2D8EF6316FB039A002B0403 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 		B2BCEA2616E29B780050D167 /* Friendly Places */ = {
 			isa = PBXGroup;
 			children = (
-				B2D8EF5D16FAF82E002B0403 /* background.jpg */,
 				B26F91ED16F2910B00372161 /* Settings.bundle */,
 				B2BCEA2F16E29B780050D167 /* AppDelegate.h */,
 				B2BCEA3016E29B780050D167 /* AppDelegate.m */,
@@ -345,7 +342,6 @@
 				B2BCEA6516E29DED0050D167 /* FriendlyPlacesStoryboard.storyboard in Resources */,
 				B2BCEA6A16E29EC80050D167 /* ViewController.xib in Resources */,
 				B26F91EE16F2910B00372161 /* Settings.bundle in Resources */,
-				B2D8EF5E16FAF82E002B0403 /* background.jpg in Resources */,
 				B2D8EF6116FB038D002B0403 /* Icon.png in Resources */,
 				B2D8EF6216FB038D002B0403 /* Icon@2x.png in Resources */,
 				B2D8EF6416FB039A002B0403 /* Icon.png in Resources */,

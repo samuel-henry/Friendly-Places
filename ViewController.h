@@ -5,6 +5,9 @@
 //  Created by Sam on 3/2/13.
 //  Copyright (c) 2013 sam henry. All rights reserved.
 //
+//  Description:    Main view controller. Handles FB authorization, FB data retrieval,
+//                  and map view population.
+//
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
