@@ -10,10 +10,7 @@
 		B2152E2D16FABC7600B3157B /* MKPinAnnotationViewLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2152E2C16FABC7600B3157B /* MKPinAnnotationViewLocation.m */; };
 		B2152E3116FAD2BE00B3157B /* MKPointAnnotationLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2152E3016FAD2BD00B3157B /* MKPointAnnotationLocation.m */; };
 		B26D51A916F3DEF100F517FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26D51A816F3DEF100F517FF /* CoreLocation.framework */; };
-		B26D51AC16F3F0A500F517FF /* CustomLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B26D51AB16F3F0A500F517FF /* CustomLocationCell.m */; };
 		B26F91EE16F2910B00372161 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B26F91ED16F2910B00372161 /* Settings.bundle */; };
-		B26F91F116F2EE6A00372161 /* FriendlyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F91F016F2EE6A00372161 /* FriendlyLocation.m */; };
-		B26F91F716F2FBD300372161 /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F91F616F2FBD300372161 /* LocationTableViewController.m */; };
 		B292FF6116F9C57B0095171E /* MapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B292FF6016F9C57B0095171E /* MapDetailViewController.m */; };
 		B2B17B0516E97C8800E4F531 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B17B0416E97C8700E4F531 /* MapKit.framework */; };
 		B2BCEA1F16E29B780050D167 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BCEA1E16E29B780050D167 /* UIKit.framework */; };
@@ -62,13 +59,7 @@
 		B2152E2F16FAD2BD00B3157B /* MKPointAnnotationLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPointAnnotationLocation.h; sourceTree = "<group>"; };
 		B2152E3016FAD2BD00B3157B /* MKPointAnnotationLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPointAnnotationLocation.m; sourceTree = "<group>"; };
 		B26D51A816F3DEF100F517FF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		B26D51AA16F3F0A500F517FF /* CustomLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLocationCell.h; sourceTree = "<group>"; };
-		B26D51AB16F3F0A500F517FF /* CustomLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLocationCell.m; sourceTree = "<group>"; };
 		B26F91ED16F2910B00372161 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		B26F91EF16F2EE6A00372161 /* FriendlyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendlyLocation.h; sourceTree = "<group>"; };
-		B26F91F016F2EE6A00372161 /* FriendlyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendlyLocation.m; sourceTree = "<group>"; };
-		B26F91F516F2FBD300372161 /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTableViewController.h; path = ../LocationTableViewController.h; sourceTree = "<group>"; };
-		B26F91F616F2FBD300372161 /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTableViewController.m; path = ../LocationTableViewController.m; sourceTree = "<group>"; };
 		B292FF5F16F9C57B0095171E /* MapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapDetailViewController.h; path = ../MapDetailViewController.h; sourceTree = "<group>"; };
 		B292FF6016F9C57B0095171E /* MapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapDetailViewController.m; path = ../MapDetailViewController.m; sourceTree = "<group>"; };
 		B2B17B0416E97C8700E4F531 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -142,30 +133,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B2152E2916FABBD900B3157B /* deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				B26F91F516F2FBD300372161 /* LocationTableViewController.h */,
-				B26F91F616F2FBD300372161 /* LocationTableViewController.m */,
-			);
-			name = deprecated;
-			path = "Friendly Places";
-			sourceTree = "<group>";
-		};
-		B2152E2A16FABC0900B3157B /* Table Files */ = {
-			isa = PBXGroup;
-			children = (
-				B26D51AA16F3F0A500F517FF /* CustomLocationCell.h */,
-				B26D51AB16F3F0A500F517FF /* CustomLocationCell.m */,
-			);
-			name = "Table Files";
-			sourceTree = "<group>";
-		};
 		B2152E2E16FABCA900B3157B /* Map Files */ = {
 			isa = PBXGroup;
 			children = (
-				B26F91EF16F2EE6A00372161 /* FriendlyLocation.h */,
-				B26F91F016F2EE6A00372161 /* FriendlyLocation.m */,
 				B2152E2F16FAD2BD00B3157B /* MKPointAnnotationLocation.h */,
 				B2152E3016FAD2BD00B3157B /* MKPointAnnotationLocation.m */,
 				B2152E2B16FABC7500B3157B /* MKPinAnnotationViewLocation.h */,
@@ -180,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				B2BCEA2616E29B780050D167 /* Friendly Places */,
-				B2152E2916FABBD900B3157B /* deprecated */,
 				B2BCEA4816E29B790050D167 /* Friendly PlacesTests */,
 				B2BCEA1D16E29B780050D167 /* Frameworks */,
 				B2BCEA1C16E29B780050D167 /* Products */,
@@ -218,15 +187,14 @@
 		B2BCEA2616E29B780050D167 /* Friendly Places */ = {
 			isa = PBXGroup;
 			children = (
+				B26F91ED16F2910B00372161 /* Settings.bundle */,
 				B2BCEA2F16E29B780050D167 /* AppDelegate.h */,
 				B2BCEA3016E29B780050D167 /* AppDelegate.m */,
 				B2BCEA6616E29EC80050D167 /* ViewController.h */,
 				B2BCEA6716E29EC80050D167 /* ViewController.m */,
 				B2BCEA6816E29EC80050D167 /* ViewController.xib */,
-				B2152E2E16FABCA900B3157B /* Map Files */,
 				B2BCEA6416E29DED0050D167 /* FriendlyPlacesStoryboard.storyboard */,
-				B26F91ED16F2910B00372161 /* Settings.bundle */,
-				B2152E2A16FABC0900B3157B /* Table Files */,
+				B2152E2E16FABCA900B3157B /* Map Files */,
 				B2BCEA6316E29D810050D167 /* Core Data */,
 				B2BCEA2716E29B780050D167 /* Supporting Files */,
 			);
@@ -399,9 +367,6 @@
 				B2BCEA6916E29EC80050D167 /* ViewController.m in Sources */,
 				B2BCEA7016E2B5020050D167 /* Friend.m in Sources */,
 				B2BCEA7316E2B5130050D167 /* Location.m in Sources */,
-				B26F91F116F2EE6A00372161 /* FriendlyLocation.m in Sources */,
-				B26F91F716F2FBD300372161 /* LocationTableViewController.m in Sources */,
-				B26D51AC16F3F0A500F517FF /* CustomLocationCell.m in Sources */,
 				B292FF6116F9C57B0095171E /* MapDetailViewController.m in Sources */,
 				B2152E3116FAD2BE00B3157B /* MKPointAnnotationLocation.m in Sources */,
 			);

@@ -8,7 +8,9 @@
         <scene sceneID="158-Ir-JWb">
             <objects>
                 <navigationController definesPresentationContext="YES" id="LUF-88-lZa" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zM3-Wv-CpG">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="zM3-Wv-CpG">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -66,11 +68,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-WL-jNx">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="376" id="xYO-cr-w7K"/>
-                                </constraints>
-                            </mapView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-WL-jNx"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -78,6 +76,7 @@
                             <constraint firstItem="nVs-WL-jNx" firstAttribute="trailing" secondItem="9gn-Ym-5uG" secondAttribute="trailing" type="default" id="dwd-j2-KrN"/>
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="trailing" secondItem="9gn-Ym-5uG" secondAttribute="trailing" type="default" id="eZh-25-irf"/>
                             <constraint firstItem="nVs-WL-jNx" firstAttribute="leading" secondItem="9gn-Ym-5uG" secondAttribute="leading" type="default" id="hXI-cZ-M6v"/>
+                            <constraint firstItem="nVs-WL-jNx" firstAttribute="bottom" secondItem="9gn-Ym-5uG" secondAttribute="bottom" type="default" id="nNf-kS-XjH"/>
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="top" secondItem="9gn-Ym-5uG" secondAttribute="top" type="default" id="qym-Px-Fd1"/>
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="leading" secondItem="9gn-Ym-5uG" secondAttribute="leading" type="default" id="yS9-Rb-0gF"/>
                         </constraints>
@@ -103,23 +102,29 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efS-gf-VgI">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="454" id="eUp-x0-cts"/>
+                                    <constraint firstAttribute="height" constant="326" id="k0D-Kg-sRi"/>
                                 </constraints>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6I-63-VqR">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfx-HT-wza">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="J8h-lN-p2T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" red="0.057067057249999997" green="0.33333333329999998" blue="0.043946207260000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdh-xL-E0K">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-0g-JS5">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="QjB-LR-6jo"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Forward">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title=">">
+                                    <color key="titleColor" red="0.057067057249999997" green="0.33333333329999998" blue="0.043946207260000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -130,15 +135,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="efS-gf-VgI" firstAttribute="trailing" secondItem="eSh-d4-YwG" secondAttribute="trailing" type="default" id="1Ho-Qc-aSz"/>
-                            <constraint firstItem="h6I-63-VqR" firstAttribute="leading" secondItem="eSh-d4-YwG" secondAttribute="leading" type="default" id="1UA-VP-ChV"/>
-                            <constraint firstItem="jdh-xL-E0K" firstAttribute="trailing" secondItem="eSh-d4-YwG" secondAttribute="trailing" type="default" id="8U9-Tq-7v5"/>
                             <constraint firstItem="efS-gf-VgI" firstAttribute="leading" secondItem="eSh-d4-YwG" secondAttribute="leading" type="default" id="9Lu-Zo-aMD"/>
+                            <constraint firstAttribute="bottom" secondItem="hfx-HT-wza" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="E8p-MH-ZHw"/>
+                            <constraint firstItem="hfx-HT-wza" firstAttribute="leading" secondItem="eSh-d4-YwG" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Gus-A0-roE"/>
+                            <constraint firstAttribute="bottom" secondItem="nSJ-0g-JS5" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Kfa-K2-ilw"/>
                             <constraint firstItem="efS-gf-VgI" firstAttribute="top" secondItem="eSh-d4-YwG" secondAttribute="top" type="default" id="LtR-K1-Auw"/>
-                            <constraint firstAttribute="bottom" secondItem="h6I-63-VqR" secondAttribute="bottom" constant="7" id="wCo-Q3-5BS"/>
-                            <constraint firstItem="jdh-xL-E0K" firstAttribute="baseline" secondItem="h6I-63-VqR" secondAttribute="baseline" type="default" id="xd1-Ex-YcG"/>
+                            <constraint firstAttribute="trailing" secondItem="nSJ-0g-JS5" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="xGg-pr-ZCp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="SLF-OD-tIM"/>
+                    <navigationItem key="navigationItem" id="SLF-OD-tIM">
+                        <barButtonItem key="backBarButtonItem" title="Map" id="KZi-kq-QeG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailViewWebView" destination="efS-gf-VgI" id="Dmu-Sw-w5X"/>
                     </connections>
@@ -152,15 +159,7 @@
         <class className="MapDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="detailViewWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="forwardButtonTapped" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hoursLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="websiteLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

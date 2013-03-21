@@ -21,14 +21,6 @@ NSManagedObjectContext* context;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSURL *passedURL = [NSURL URLWithString:self.website];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:passedURL];
-    
-    //load webview
-    [self.detailViewWebView loadRequest:request];
-    [self.detailViewWebView autoresizesSubviews];
 
 }
 
@@ -42,51 +34,13 @@ NSManagedObjectContext* context;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.nameLabel.text = self.name;
+    NSURL *passedURL = [NSURL URLWithString:self.website];
     
-    NSLog(@"adding street");
-    self.addressLabel.text = self.street;
+    NSURLRequest *request = [NSURLRequest requestWithURL:passedURL];
     
-    NSLog(@"adding website");
-    self.websiteLabel.text = self.website;
-    
-    NSLog(@"adding phone number");
-    self.phoneLabel.text = self.phone;
-    NSLog(@"adding description");
-    self.descriptionLabel.text = self.description;
-    
-    
-    //NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Location"];
-    //NSPredicate *predicate = [NSPredicate predicateWithFormat: @"name == %@", self.name];
-    //[fetchRequest setPredicate:predicate];
-    
-    
-    //NSError *error;
-    
-    //NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
-    
-    //Location *currLocation = results[0];
-    
-    /*
-    if (currLocation == nil) {
-        NSLog(@"error fetching location in detail view");
-    } else {
-        NSLog(@"fetched location in detail view");
-        NSLog(@"adding name");
-        self.nameLabel.text = currLocation.name;
-     
-        NSLog(@"adding street");
-        self.addressLabel.text = currLocation.street;
-        
-        NSLog(@"adding website");
-        self.websiteLabel.text = currLocation.website;
-        
-        NSLog(@"adding phone number");
-        self.phoneLabel.text = currLocation.phone;
-        NSLog(@"adding description");
-        //self.descriptionLabel.text = currLocation.description;
-    }*/
-
+    //load webview
+    [self.detailViewWebView loadRequest:request];
+    [self.detailViewWebView autoresizesSubviews];
 }
 
 - (void)didReceiveMemoryWarning

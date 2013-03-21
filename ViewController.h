@@ -15,9 +15,7 @@
 - (IBAction)getDataClicked:(UIButton *)sender;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
-//@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 
 
