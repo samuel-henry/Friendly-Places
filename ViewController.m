@@ -16,6 +16,7 @@
 #import "CustomLocationCell.h"
 #import "MapDetailViewController.h"
 #import "MKPinAnnotationViewLocation.h"
+#import "MKPointAnnotationLocation.h"
 
 @interface ViewController ()
 
@@ -24,7 +25,6 @@
 @implementation ViewController
 AppDelegate* appDelegate;
 NSManagedObjectContext* context;
-NSArray* locations;
 NSMutableArray* visibleAnnotations;
 
 - (void)viewDidLoad
@@ -130,21 +130,28 @@ NSMutableArray* visibleAnnotations;
     //NSLog(@"adding location to map");
     
     NSString *name = someLocation.name;
-    
+    NSString *website = someLocation.website;
+    NSLog([someLocation.fb_page_id stringValue]);
+    //NSString *fb_id = @"test";
+    NSString *fb_id = [NSString stringWithFormat:@"%@", someLocation.fb_page_id];
     //FriendlyLocation *annotation = [[FriendlyLocation alloc] initWithName:name coordinate:coordinates];
     
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    MKPointAnnotationLocation *annotation = [[MKPointAnnotationLocation alloc] init];
     [annotation setCoordinate:coordinates];
     [annotation setTitle:name];
-    [annotation setSubtitle:[someLocation.fb_page_id stringValue]];
+    [annotation setSubtitle:website];
+    /*annotation.website = someLocation.website;
+    annotation.street = someLocation.street;
+    annotation.description = someLocation.description;
+    annotation.phone = someLocation.phone;*/
     
-    
-    //TODO: add callout
     [self.mapView addAnnotation:annotation];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    NSLog(@"entering theMapView");
+    //NSLog(@"entering theMapView");
+    //MKPointAnnotationLocation *test = (MKPointAnnotationLocation *)annotation;
+
     static NSString *identifier = @"MyLocation";
     
     //if ([annotation isKindOfClass:[MyLocation class]]) {
@@ -163,7 +170,7 @@ NSMutableArray* visibleAnnotations;
     annotationView.canShowCallout = YES;
     annotationView.pinColor = MKPinAnnotationColorGreen;
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    
+    //annotationView.website = test.website;
     
     return annotationView;
 }
@@ -171,13 +178,16 @@ NSMutableArray* visibleAnnotations;
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     NSLog(@"tapped callout");
-    
-    //cast not working right
-    //Location *tappedLocation = (Location *)view.annotation;
-    //NSLog(tappedLocation.name);
     MapDetailViewController *mdvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"MapDetailViewController"];
-    MKPointAnnotation *locationAnnotation = (MKPointAnnotation *)view.annotation;
-    mdvc.fb_page_id = locationAnnotation.subtitle;
+    MKPointAnnotationLocation *locationAnnotation = (MKPointAnnotationLocation *)view.annotation;
+    mdvc.website = locationAnnotation.subtitle;
+    //mdvc.latitude = [[NSNumber alloc] initWithDouble:locationAnnotation.coordinate.latitude];
+    //mdvc.longitude = [[NSNumber alloc] initWithDouble:locationAnnotation.coordinate.longitude];
+    mdvc.name = locationAnnotation.title;
+    //mdvc.description = locationAnnotation.description;
+    //mdvc.phone = locationAnnotation.phone;
+    //mdvc.street = locationAnnotation.street;
+    //mdvc.website = locationAnnotation.website;
     
     [self.navigationController pushViewController:mdvc animated:YES];
 }
@@ -191,7 +201,8 @@ NSMutableArray* visibleAnnotations;
 //TODO: buggy implementation
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [locations count];
+    return 0;
+    //return [locations count];
 }
 
 - (CustomLocationCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -359,7 +370,7 @@ NSMutableArray* visibleAnnotations;
     
     NSError *error;
     
-    locations = [context executeFetchRequest:fetchRequest error:&error];
+    NSArray *locations = [context executeFetchRequest:fetchRequest error:&error];
     
     if (locations == nil) {
         NSLog(@"error fetching locations");

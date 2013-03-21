@@ -9,4 +9,5 @@
 #import <MapKit/MapKit.h>
 
 @interface MKPinAnnotationViewLocation : MKPinAnnotationView
+@property (weak, nonatomic) NSString *website;
 @end
