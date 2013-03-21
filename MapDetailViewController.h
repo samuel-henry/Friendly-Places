@@ -24,5 +24,10 @@
 @property (weak, nonatomic) NSString *street;
 @property (weak, nonatomic) NSNumber *latitude;
 @property (weak, nonatomic) NSNumber *longitude;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButtonTapped;
+
+- (IBAction)backButtonTapped:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIWebView *detailViewWebView;
 
 @end

@@ -22,13 +22,22 @@ NSManagedObjectContext* context;
 {
     [super viewDidLoad];
     
-    NSLog(self.fb_page_id);
-    // Do any additional setup after loading the view from its nib.
-    appDelegate = [AppDelegate sharedAppDelegate];
-    context = appDelegate.managedObjectContext;
+    NSURL *passedURL = [NSURL URLWithString:self.website];
     
-    //get locations from DB
-    //[self displayLocation];
+    NSURLRequest *request = [NSURLRequest requestWithURL:passedURL];
+    
+    //load webview
+    [self.detailViewWebView loadRequest:request];
+    [self.detailViewWebView autoresizesSubviews];
+
+}
+
+- (IBAction)backButtonTapped:(id)sender {
+    [self.detailViewWebView goBack];
+}
+
+- (IBAction)forwardButtonTapped:(id)sender {
+    [self.detailViewWebView goForward];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,5 +94,6 @@ NSManagedObjectContext* context;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
