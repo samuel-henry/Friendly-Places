@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-793" y="-362"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - Friendly Places-->
         <scene sceneID="WFd-Fm-Z12">
             <objects>
                 <viewController id="qCl-dk-zcb" customClass="ViewController" sceneMemberID="viewController">
@@ -81,7 +81,9 @@
                             <constraint firstItem="M55-iu-Dhf" firstAttribute="leading" secondItem="9gn-Ym-5uG" secondAttribute="leading" type="default" id="yS9-Rb-0gF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9dM-gy-2S9"/>
+                    <navigationItem key="navigationItem" title="Friendly Places" id="9dM-gy-2S9">
+                        <barButtonItem key="backBarButtonItem" title="Map" id="qMK-B8-6DN"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="nVs-WL-jNx" id="zTB-De-jG7"/>
                         <segue destination="2gE-Fi-qia" kind="push" identifier="segueueToDetailView" id="GGn-9J-8UQ"/>

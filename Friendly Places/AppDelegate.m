@@ -22,8 +22,13 @@ NSString *const FBSessionStateChangedNotification =
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[self create];
+    [self customizeAppearance];
     return YES;
+}
+
+-(void)customizeAppearance
+{
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"background.jpg"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

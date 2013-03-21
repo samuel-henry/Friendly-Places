@@ -21,6 +21,7 @@ NSManagedObjectContext* context;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = self.name;
 
 }
 
