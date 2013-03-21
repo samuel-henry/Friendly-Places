@@ -42,6 +42,11 @@
 		B2BCEA7316E2B5130050D167 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BCEA7216E2B5130050D167 /* Location.m */; };
 		B2BCEA7616E2B53E0050D167 /* Checkin.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BCEA7516E2B53E0050D167 /* Checkin.m */; };
 		B2D8EF5E16FAF82E002B0403 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF5D16FAF82E002B0403 /* background.jpg */; };
+		B2D8EF6116FB038D002B0403 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF5F16FB038D002B0403 /* Icon.png */; };
+		B2D8EF6216FB038D002B0403 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF6016FB038D002B0403 /* Icon@2x.png */; };
+		B2D8EF6416FB039A002B0403 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF6316FB039A002B0403 /* Icon.png */; };
+		B2D8EF6616FB039F002B0403 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF6516FB039F002B0403 /* Icon@2x.png */; };
+		B2D8EF6816FB0404002B0403 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2D8EF6716FB0404002B0403 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +106,11 @@
 		B2BCEA7416E2B53E0050D167 /* Checkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkin.h; sourceTree = "<group>"; };
 		B2BCEA7516E2B53E0050D167 /* Checkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkin.m; sourceTree = "<group>"; };
 		B2D8EF5D16FAF82E002B0403 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		B2D8EF5F16FB038D002B0403 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		B2D8EF6016FB038D002B0403 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		B2D8EF6316FB039A002B0403 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		B2D8EF6516FB039F002B0403 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		B2D8EF6716FB0404002B0403 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +217,11 @@
 		B2BCEA2716E29B780050D167 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2D8EF5F16FB038D002B0403 /* Icon.png */,
+				B2D8EF6016FB038D002B0403 /* Icon@2x.png */,
+				B2D8EF6716FB0404002B0403 /* Default-568h@2x.png */,
+				B2D8EF6516FB039F002B0403 /* Icon@2x.png */,
+				B2D8EF6316FB039A002B0403 /* Icon.png */,
 				B2BCEA2816E29B780050D167 /* Friendly Places-Info.plist */,
 				B2BCEA2916E29B780050D167 /* InfoPlist.strings */,
 				B2BCEA2C16E29B780050D167 /* main.m */,
@@ -331,6 +346,11 @@
 				B2BCEA6A16E29EC80050D167 /* ViewController.xib in Resources */,
 				B26F91EE16F2910B00372161 /* Settings.bundle in Resources */,
 				B2D8EF5E16FAF82E002B0403 /* background.jpg in Resources */,
+				B2D8EF6116FB038D002B0403 /* Icon.png in Resources */,
+				B2D8EF6216FB038D002B0403 /* Icon@2x.png in Resources */,
+				B2D8EF6416FB039A002B0403 /* Icon.png in Resources */,
+				B2D8EF6616FB039F002B0403 /* Icon@2x.png in Resources */,
+				B2D8EF6816FB0404002B0403 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
