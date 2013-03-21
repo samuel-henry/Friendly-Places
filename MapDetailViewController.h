@@ -16,5 +16,7 @@
 @property (weak, nonatomic) NSString *name;
 @property (weak, nonatomic) NSString *website;
 @property (weak, nonatomic) IBOutlet UIWebView *detailViewWebView;
+- (IBAction)backButtonClicked:(id)sender;
+- (IBAction)forwardButtonClicked:(id)sender;
 
 @end

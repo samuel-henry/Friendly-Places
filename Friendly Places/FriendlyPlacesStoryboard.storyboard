@@ -116,6 +116,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonClicked:" destination="2gE-Fi-qia" eventType="touchUpInside" id="k1N-Lk-LDU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-0g-JS5">
                                 <constraints>
@@ -129,6 +132,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="forwardButtonClicked:" destination="2gE-Fi-qia" eventType="touchUpInside" id="NL5-pM-npO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -159,7 +165,9 @@
         <class className="MapDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="backButtonClicked:"/>
                 <relationship kind="action" name="backButtonTapped:"/>
+                <relationship kind="action" name="forwardButtonClicked:"/>
                 <relationship kind="action" name="forwardButtonTapped:"/>
                 <relationship kind="outlet" name="detailViewWebView" candidateClass="UIWebView"/>
             </relationships>

@@ -46,7 +46,7 @@
  * @description     Called when the back button for the webview is tapped.
  *                  Goes back one page in the history
  ******************************************************************************/
-- (IBAction)backButtonTapped:(id)sender {
+- (IBAction)backButtonClicked:(id)sender {
     [self.detailViewWebView goBack];
 }
 
@@ -55,7 +55,7 @@
  * @description     Called when the forward button for the webview is tapped.
  *                  Goes forward one page in the history
  ******************************************************************************/
-- (IBAction)forwardButtonTapped:(id)sender {
+- (IBAction)forwardButtonClicked:(id)sender {
     [self.detailViewWebView goForward];
 }
 
@@ -64,6 +64,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end
