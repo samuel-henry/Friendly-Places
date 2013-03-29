@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "Location.h"
 
-@interface MapDetailViewController : UIViewController
+@interface MapDetailViewController : UIViewController <UIWebViewDelegate>
 @property (weak, nonatomic) NSString *name;
 @property (weak, nonatomic) NSString *website;
 @property (weak, nonatomic) IBOutlet UIWebView *detailViewWebView;

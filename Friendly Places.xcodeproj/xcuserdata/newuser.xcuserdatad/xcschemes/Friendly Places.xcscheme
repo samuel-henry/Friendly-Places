@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B2BCEA1A16E29B780050D167"
-               BuildableName = "Friendly Places.app"
+               BuildableName = "FPlaces.app"
                BlueprintName = "Friendly Places"
                ReferencedContainer = "container:Friendly Places.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2BCEA1A16E29B780050D167"
-            BuildableName = "Friendly Places.app"
+            BuildableName = "FPlaces.app"
             BlueprintName = "Friendly Places"
             ReferencedContainer = "container:Friendly Places.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2BCEA1A16E29B780050D167"
-            BuildableName = "Friendly Places.app"
+            BuildableName = "FPlaces.app"
             BlueprintName = "Friendly Places"
             ReferencedContainer = "container:Friendly Places.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2BCEA1A16E29B780050D167"
-            BuildableName = "Friendly Places.app"
+            BuildableName = "FPlaces.app"
             BlueprintName = "Friendly Places"
             ReferencedContainer = "container:Friendly Places.xcodeproj">
          </BuildableReference>
